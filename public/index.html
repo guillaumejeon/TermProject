@@ -1,0 +1,69 @@
+<html>
+    <head>
+        <script src="/js/aframe-v0.8.2.min.js"></script>
+        <script src="/js/spherical-env-map.js"></script>
+        <script src="/js/test_component.js"></script>
+        <script src="/js/tree_generator.js"></script>
+    </head>
+    <body>
+    </body>
+        <a-scene>
+            <a-assets>
+                <img id="skymap" src="assets/textures/CloudySky.jpg">
+                <!-- <img id="cowmap" src="assets/textures/Cow.png">
+                <a-asset-item id="cow-obj" src="assets/models/Cow.obj"></a-asset-item>
+                <a-asset-item id="helmet-gltf" src="assets/models/DamagedHelmet.glb"></a-asset-item> -->
+ 
+          
+                  <a-asset-item id='model' src='assets/models/treeModel.obj'></a-assets-item> 
+                
+                  <img id='texture' src='assets/textures/Snapshot(finished).png'>
+
+             </a-assets>
+
+             <!-- <a-entity obj-model="obj: #model" material="src: #texture"></a-entity> -->
+
+            <a-entity   id="Box1"
+                        position="0 0 0"
+                        rotation="0 45 0"
+                        scale="40 1 80"
+                        geometry="primitive:box; width:1; hight:1; depth:1"
+                        material="color:#006400; roughness: 0.25; metalness:0.0; sphericalEnvMap:#skymap;"
+            ></a-entity> 
+
+            <a-entity id="river" geometry="primitive: plane" material="color: blue"
+             position="-10 0 0" sound="src: Sounds/OliverRiot-Neurosis.mp3; autoplay: true"></a-entity>
+
+
+            <!-- <a-gltf-model   id="helmet" 
+                            src="#helmet-gltf" 
+                            shadow="cast:true; receive:true"
+                            spherical-env-map="src:#skymap;"
+            ></a-gltf-model> -->
+            
+
+
+            <!-- <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9" shadow></a-box> -->
+            <!-- <a-sphere position="0 1.25 -5" rotation="0 0 0" color="#EF2D5E" shadow></a-sphere>
+            <a-cylinder position="1 0.75 -3" rotation="0 0 0" color="#FFC65D" shadow></a-cylinder>     
+            <a-cylinder position="0 0 -4" rotation="-90 0 0" width="14" hight="4" color="#4CC3D9" shadow></a-cylinder>      
+            <a-sky color="#ececec"></a-sky>  -->
+<!-- 
+            <a-entity   id="sky"
+                        position="0 0 0"
+                        rotation="0 0 0"
+                        scale="1 1 1"
+                        geometry="primitive:sphere; radius:500;"
+                        material="sphere:flat; src:#skymap; side:back;"
+                        >
+            </a-entity> -->
+
+            <a-entity position="0 0 20"> 
+                 <a-camera></a-camera>
+            </a-entity>
+
+            <a-entity hello-friend="message: Hello "></a-entity>
+
+        </a-scene>
+    </body>
+</html>
