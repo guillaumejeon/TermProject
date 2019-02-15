@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>SandboxExperiences — Together</title>
+        <meta name="description" content="SandboxExperiences - Together">
+
+        <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>
+        <script src="easyrtc/easyrtc.js"></script>
+        <script src="https://unpkg.com/networked-aframe@^0.6.0/dist/networked-aframe.min.js"></script>
+
+        <script src="https://unpkg.com/aframe-randomizer-components@^3.0.1/dist/aframe-randomizer-components.min.js"></script>
+        <script src="https://unpkg.com/aframe-particle-system-component@1.0.5/dist/aframe-particle-system-component.min.js"></script>
+        <script src="/js/spawn-in-circle.component.js"></script>
+    </head>
+    <body>
+        <a-scene networked-scene="
+            room: basic;
+            debug: true;
+        ">
+            <a-assets>
+
+            <img id="grid" src="https://img.gs/bbdkhfbzkk/stretch/https://i.imgur.com/25P1geh.png" crossorigin="anonymous">
+            <img id="sky" src="https://img.gs/bbdkhfbzkk/2048x2048,stretch/http://i.imgur.com/WqlqEkq.jpg" crossorigin="anonymous" />
+
+            <!-- Templates -->
+
+            <!-- Avatar -->
+            <template id="avatar-template">
+                <a-entity class="avatar">
+                    <a-sphere class="avatar-light"
+                        material="color:#FFF; shader:flat"
+                        light="type:point; intensity:0.1"
+                        scale="0.5 0.5 0.5"
+                    >
+                        <a-animation attribute="position" direction="alternate" dur="5000" repeat="indefinite" to="0 0.25 0"></a-animation>
+                    </a-sphere>
+                </a-entity>
+            </template>
+
+            <!-- /Templates -->
+            </a-assets>
+
+            <a-entity id="player" networked="template:#avatar-template;attachTemplateToLocal:false;" position="0 1.6 0" spawn-in-circle="radius:10">
+                <a-sphere class="avatar-light"
+                    visible="false"
+                    material="color:#FFF; shader:flat"
+                ></a-sphere>
+            </a-entity>
+
+            <a-entity id="camera" camera position="0 2 0" look-controls light="type:point; intensity:0.1"></a-entity>
+
+            <a-entity position="0 0 0"
+                geometry="primitive: plane; width: 10000; height: 10000;" rotation="-90 0 0" material="color:#FFF" shadow>
+            </a-entity>
+
+            <a-sky src="#sky" rotation="0 -90 0"></a-sky>
+            <a-entity id="particles" particle-system="preset: snow"></a-entity>
+        </a-scene>
+
+        <script>
+            // Define custom schema for syncing avatar color, set by random-color
+            NAF.schemas.add({
+                template: '#avatar-template',
+                components: [
+                'position',
+                {
+                    selector: '.avatar-light',
+                    component: 'material',
+                }
+                ]
+            });
+        </script>
+    </body>
+</html>
