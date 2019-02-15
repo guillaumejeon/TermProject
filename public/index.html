@@ -1,69 +1,171 @@
+<!DOCTYPE html>
 <html>
     <head>
-        <script src="/js/aframe-v0.8.2.min.js"></script>
+        <title>Hello, WebVR! - A-Frame</title>
+        <meta name="description" content="Hello, WebVR! - A-Frame">
+
+        <script src="/js/aframe.min.js"></script>
         <script src="/js/spherical-env-map.js"></script>
-        <script src="/js/test_component.js"></script>
-        <script src="/js/tree_generator.js"></script>
+
+        <script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
+
     </head>
     <body>
-    </body>
-        <a-scene>
-            <a-assets>
-                <img id="skymap" src="assets/textures/CloudySky.jpg">
-                <!-- <img id="cowmap" src="assets/textures/Cow.png">
-                <a-asset-item id="cow-obj" src="assets/models/Cow.obj"></a-asset-item>
-                <a-asset-item id="helmet-gltf" src="assets/models/DamagedHelmet.glb"></a-asset-item> -->
- 
-          
-                  <a-asset-item id='model' src='assets/models/treeModel.obj'></a-assets-item> 
+        <a-scene shadow="type:basic;">
+
+            <a-assets timeout="3000">
+
+<!-- Loading in models -->
+                <a-asset-item id='Forest-obj' src="assets/models/Menu.obj"></a-assets-item>                  
+
+                <a-asset-item id='MountainHouse-obj' src="assets/models/MountainHouse.obj"></a-assets-item>
+                <a-asset-item id='pagodaRoof-obj' src="assets/models/pagoda_roof.obj"></a-assets-item>
+                <a-asset-item id='teapot-obj' src="assets/models/teapot.obj"></a-assets-item>  
+             
+
+<!-- Loading in textures -->
                 
-                  <img id='texture' src='assets/textures/Snapshot(finished).png'>
-
-             </a-assets>
-
-             <!-- <a-entity obj-model="obj: #model" material="src: #texture"></a-entity> -->
-
-            <a-entity   id="Box1"
-                        position="0 0 0"
-                        rotation="0 45 0"
-                        scale="40 1 80"
-                        geometry="primitive:box; width:1; hight:1; depth:1"
-                        material="color:#006400; roughness: 0.25; metalness:0.0; sphericalEnvMap:#skymap;"
-            ></a-entity> 
-
-            <a-entity id="river" geometry="primitive: plane" material="color: blue"
-             position="-10 0 0" sound="src: Sounds/OliverRiot-Neurosis.mp3; autoplay: true"></a-entity>
+                <img crossorigin="anonymous" id="forestTexture" src="/assets/textures/forestTexture.png">
+                <img crossorigin="anonymous" id="skymap" src="/assets/textures/Image7.jpg">
 
 
-            <!-- <a-gltf-model   id="helmet" 
-                            src="#helmet-gltf" 
-                            shadow="cast:true; receive:true"
-                            spherical-env-map="src:#skymap;"
-            ></a-gltf-model> -->
+<!-- Loading in sounds -->
+
+              
+            </a-assets>
+
+<!-- Mouse controls -->
+
+                <!-- <a-entity id="links" layout="type: line; margin: 1.5" position="0 -1 -4">
+                    <a-entity template="src: #link" data-src="#cubes" data-thumb="#cubes-thumb"></a-entity>
+                    <a-entity template="src: #link" data-src="#city" data-thumb="#city-thumb"></a-entity>
+                    <a-entity template="src: #link" data-src="#sechelt" data-thumb="#sechelt-thumb"></a-entity>
+                </a-entity> -->
+
+                <a-entity position="-0.5 1.5 0" camera look-controls>
+                    <a-cursor id="cursor"
+                      animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
+                      animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
+                      event-set__1="_event: mouseenter; color: springgreen"
+                      event-set__2="_event: mouseleave; color: black"
+                      fuse="true"
+                      raycaster="objects: .link"></a-cursor>
+                </a-entity>
+
+                
+               <!-- <a-entity position="-0.5 1.5 0" camera look-controls wasd-controls>
+                    <a-entity   cursor="fuse:true; fuseTimeout:500;"                                    
+                                position="0 0 -1"
+                                geometry="primitive:ring; radiusInner:0.02; radiusOuter:0.03;"
+                                material="shader:flat; color:black;" >d
+                    </a-entity>
+                </a-entity>  -->
+        
+
+<!-- Models -->            
+                <a-entity 
+                    id="rain" 
+                    particle-system="preset: 
+                                     rain; 
+                                     color: #24CAFF; 
+                                     particleCount: 1000">
+                </a-entity>
+
+                <a-obj-model 
+                    src="#MountainHouse-obj" 
+                    material="color:grey"
+                    position="0, 0, 0" 
+                    rotation="0 180 0" 
+                    scale="0.05 0.05 0.05" 
+                    shadow="cast:true; receive:true;" 
+                    spherical-env-map="src:#skymap;">
+                </a-obj-model>
+
+                <a-obj-model 
+                     src="#pagodaRoof-obj" 
+                     material="color:grey"
+                     position="-0.5, 3.5, 0.2" 
+                     rotation="0 180 0" 
+                     scale="0.28 0.28 0.28" 
+                     shadow="cast:true; receive:true;" 
+                     spherical-env-map="src:#skymap;">
+                 </a-obj-model>     
+                 
+                 <a-obj-model 
+                     src="#teapot-obj" 
+                     material="color:silver"
+                     position="0.6, 0.6, -1" 
+                     rotation="0 140 0" 
+                     scale="0.016 0.016 0.016" 
+                     shadow="cast:true; receive:true;" 
+                     spherical-env-map="src:#skymap;">
+                 </a-obj-model>    
+
+
+                 <a-obj-model 
+                     src="#Forest-obj" 
+                     material="color:white"
+                     position="0.8, 2, -4" 
+                     rotation="0 0 0" 
+                    scale="0.012 0.012 0.012" 
+                     shadow="cast:true; receive:true;" 
+                     spherical-env-map="src:#skymap;">
+                 </a-obj-model>   
+
+                 <a-obj-model 
+                    src="#Forest-obj" 
+                    material="color:white"
+                    position="-0.7, 2, -4" 
+                    rotation="0 0 0" 
+                    scale="0.012 0.012 0.012" 
+                    shadow="cast:true; receive:true;" 
+                    spherical-env-map="src:#skymap;">
+                 </a-obj-model>   
+
+                <a-obj-model 
+                    src="#Forest-obj" 
+                    material="color:white"
+                    position="-2.2, 2, -4" 
+                    rotation="0 0 0" 
+                    scale="0.012 0.012 0.012" 
+                    shadow="cast:true; receive:true;" 
+                    spherical-env-map="src:#skymap;">
+                </a-obj-model>   
+
+<!-- Building the scene -->   
+                <a-entity id="plane" 
+                    geometry="primitive:plane; width:20; height:4;" position="0 0.5 0" rotation="-90 0 0" 
+                    shadow="receive:true;" material="color:grey; sphericalEnvMap:#skymap; roughness:5; metalness:0.0;">
+                </a-entity>
+                
+                <a-entity id="sky"
+                    geometry="primitive:sphere; radius:200;"
+                    material="shader:flat; src:#skymap; side:back; height:2048; width:2048">
+                </a-entity>
+
+
+<!-- Creatintg sound -->   
             
+                <a-entity id="river" d
+                position="10, 0, 10" sound="src: assets/sound/meditationMusic.mp3; autoplay: true"></a-entity> 
 
+                <!-- <a-entity id="river" d
+                position="10, 0, 10" sound="src: assets/sound/nightSounds.mp3; autoplay: true"></a-entity>  -->
 
-            <!-- <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9" shadow></a-box> -->
-            <!-- <a-sphere position="0 1.25 -5" rotation="0 0 0" color="#EF2D5E" shadow></a-sphere>
-            <a-cylinder position="1 0.75 -3" rotation="0 0 0" color="#FFC65D" shadow></a-cylinder>     
-            <a-cylinder position="0 0 -4" rotation="-90 0 0" width="14" hight="4" color="#4CC3D9" shadow></a-cylinder>      
-            <a-sky color="#ececec"></a-sky>  -->
-<!-- 
-            <a-entity   id="sky"
-                        position="0 0 0"
-                        rotation="0 0 0"
-                        scale="1 1 1"
-                        geometry="primitive:sphere; radius:500;"
-                        material="sphere:flat; src:#skymap; side:back;"
-                        >
-            </a-entity> -->
-
-            <a-entity position="0 0 20"> 
-                 <a-camera></a-camera>
-            </a-entity>
-
-            <a-entity hello-friend="message: Hello "></a-entity>
-
+<!-- Ligthing -->   
+                <a-entity light="type:directional; castShadow:true; intensity:0.6; shadowBias:-0.000001; shadowMapWidth:1024; shadowMapHeight:1024;" position="-0.3 1.2 1"></a-entity>
+                <a-entity light="type: ambient; intensity: 0.4; color:#0055a5 ;"></a-entity>
         </a-scene>
     </body>
 </html>
+
+
+
+
+                <!-- <a-entity position="-0.5 1.5 0" camera look-controls wasd-controls>
+                    <a-entity   cursor="fuse:true; fuseTimeout:500;"                                    
+                                position="0 0 -1"
+                                geometry="primitive:ring; radiusInner:0.02; radiusOuter:0.03;"
+                                material="shader:flat; color:black;" >d
+                    </a-entity>
+                </a-entity> -->
