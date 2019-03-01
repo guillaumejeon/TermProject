@@ -8,6 +8,39 @@
         <script src="/js/spherical-env-map.js"></script>
 
         <script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
+        <script src="https://unpkg.com/aframe-animation-component@^4.1.2/dist/aframe-animation-component.min.js"></script> 
+
+        <script>
+            AFRAME.registerComponent('animation-test', {
+                schema: {},
+                init: function () {
+                    Context_AF = this;
+
+                    this.el.addEventListener('click', function (e) {
+                        console.log('mouseclick')
+                        //this.el.setAttribute('animation', 'property:rotation; to:0 360 0; easing:linear; loop:true; dir:normal; dur:1000;');
+                    });
+
+                    this.el.addEventListener('mouseleave', function (e) {
+                        console.log('mouseleave')
+                        //Context_AF.el.setAttribute('animation', 'property:rotation; to:0 360 0; easing:linear; loop:true; dir:normal; dur:1000;');
+                    });
+
+                    this.el.addEventListener('mouseenter', function (e) {
+                        console.log('mouseenter');
+                        //Context_AF.el.removeAttribute('animation');
+                    });
+
+                    //animation="property:rotation; to:0 360 0; easing:linear; loop:true; dir:normal; dur:1000; startEvents:mouseenter; pauseEvent:mouseleave; resumeEvents:mouseleave;"
+                },
+                // update: function () {},
+                // tick: function () {},
+                // remove: function () {},
+                // pause: function () {},
+                // play: function () {}
+            });
+            
+        </script>
 
     </head>
     <body>
@@ -31,6 +64,9 @@
 
 <!-- Loading in sounds -->
 
+
+<!-- Not Important -->
+
               
             </a-assets>
 
@@ -42,7 +78,7 @@
                     <a-entity template="src: #link" data-src="#sechelt" data-thumb="#sechelt-thumb"></a-entity>
                 </a-entity> -->
 
-                <a-entity position="-0.5 1.5 0" camera look-controls>
+                <!-- <a-entity position="-0.5 1.5 0" camera look-controls wasd-controls>
                     <a-cursor id="cursor"
                       animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
                       animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
@@ -50,16 +86,31 @@
                       event-set__2="_event: mouseleave; color: black"
                       fuse="true"
                       raycaster="objects: .link"></a-cursor>
-                </a-entity>
+                </a-entity> -->
 
                 
-               <!-- <a-entity position="-0.5 1.5 0" camera look-controls wasd-controls>
-                    <a-entity   cursor="fuse:true; fuseTimeout:500;"                                    
+
+               <a-entity position="-0.5 1.5 0" camera look-controls wasd-controls>
+                    <!-- <a-entity   cursor="fuse:true; fuseTimeout:500;"                                    
                                 position="0 0 -1"
                                 geometry="primitive:ring; radiusInner:0.02; radiusOuter:0.03;"
-                                material="shader:flat; color:black;" >d
+                                material="shader:flat; color:black;"
+                                animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
+                      animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
+                      event-set__1="_event: mouseenter; color: springgreen"
+                      event-set__2="_event: mouseleave; color: black" >
+                    </a-entity> -->
+                    <a-entity
+                        animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
+                        animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1"
+                        animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1"
+                        cursor="fuse: true;"
+                        material="color: black; shader: flat"
+                        position="0 0 -3"
+                        geometry="primitive:ring; radiusInner:0.1; radiusOuter:0.2;"
+                        raycaster="objects: .link">
                     </a-entity>
-                </a-entity>  -->
+                </a-entity> 
         
 
 <!-- Models -->            
@@ -102,15 +153,20 @@
                  </a-obj-model>    
 
 
-                 <a-obj-model 
-                     src="#Forest-obj" 
-                     material="color:white"
-                     position="0.8, 2, -4" 
+                 <a-entity 
+                    id="testForest"
+                     class="link"
+                     animation-test
+                     obj-model="obj:#Forest-obj"
+                     material="color:white; sphericalEnvMap:#skymap;"
+                     position="0.8 2 -4" 
                      rotation="0 0 0" 
-                    scale="0.012 0.012 0.012" 
+                     scale="0.012 0.012 0.012" 
                      shadow="cast:true; receive:true;" 
-                     spherical-env-map="src:#skymap;">
-                 </a-obj-model>   
+                     animation="property:rotation.z; to:360; easing:linear; autoplay:false; loop:true; dir:normal; dur:4000; pauseEvents:mouseenter; resumeEvents:mouseleave;"
+                     >
+
+                 </a-entity>   
 
                  <a-obj-model 
                     src="#Forest-obj" 
