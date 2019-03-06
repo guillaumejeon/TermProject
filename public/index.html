@@ -40,12 +40,61 @@
                 // play: function () {}
             });
             
+            AFRAME.registerComponent('navigate-to-forest', {
+                schema: {
+                    url: {dafualt: ''}
+                },
+
+                init: function () {
+                    var data = this.data;
+                    var el = this.el;
+
+                    el.addEventListener('click', function () {
+                        window.location.href = "https://www.facebook.com/"
+                    });
+                }
+                
+            })
+
+           AFRAME.registerComponent('navigate-to-artic', {
+                schema: {
+                    url: {dafualt: ''}
+                },
+
+                init: function () {
+                    var data = this.data;
+                    var el = this.el;
+
+                    el.addEventListener('click', function () {
+                        window.location.href = "https://www.instagram.com/?hl=en"
+                    });
+                }
+                
+            })
+
+            AFRAME.registerComponent('playMusic', {
+                init:function () {
+                    let playing = false;
+                    let audio = document.querySelector("#meditationMusic");
+                    this.el.addEventListener('click', () => {
+                        if(!playing){
+                            audio.play();
+                        } else {
+                            audio.pause();
+                            audio.currentTime = 0;
+                        }
+                        playing = !playing;
+                    });
+                }
+            })
+
         </script>
 
     </head>
     <body>
+        <!-- <script> AFRAME.registerComponent('nextScene_onClick', {init: function () {console.log('Hello, World!')} });</script> -->
         <a-scene shadow="type:basic;">
-
+            
             <a-assets timeout="3000">
 
 <!-- Loading in models -->
@@ -54,6 +103,7 @@
                 <a-asset-item id='MountainHouse-obj' src="assets/models/MountainHouse.obj"></a-assets-item>
                 <a-asset-item id='pagodaRoof-obj' src="assets/models/pagoda_roof.obj"></a-assets-item>
                 <a-asset-item id='teapot-obj' src="assets/models/teapot.obj"></a-assets-item>  
+                <a-asset-item id='playButton-obj' src="assets/models/playButton.obj"></a-asset-item>
              
 
 <!-- Loading in textures -->
@@ -69,6 +119,8 @@
 
               
             </a-assets>
+
+
 
 <!-- Mouse controls -->
 
@@ -101,60 +153,78 @@
                       event-set__2="_event: mouseleave; color: black" >
                     </a-entity> -->
                     <a-entity
-                        animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
+                        animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 50; from: 0.1 0.1 0.1; to: 1 1 1"
                         animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1"
                         animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1"
                         cursor="fuse: true;"
-                        material="color: black; shader: flat"
+                        material="color: #e0e9da; shader: flat"
                         position="0 0 -3"
-                        geometry="primitive:ring; radiusInner:0.1; radiusOuter:0.2;"
+                        geometry="primitive:circle; radius: 0.08" material="side: double"
                         raycaster="objects: .link">
                     </a-entity>
                 </a-entity> 
         
 
 <!-- Models -->            
-                <a-entity 
+                <!-- <a-entity 
                     id="rain" 
                     particle-system="preset: 
                                      rain; 
                                      color: #24CAFF; 
                                      particleCount: 1000">
-                </a-entity>
+                </a-entity> -->
 
-                <a-obj-model 
-                    src="#MountainHouse-obj" 
+                <a-entity
+                    id="#MountainHouse-obj" 
+                    obj-model="obj:#MountainHouse-obj"
                     material="color:grey"
                     position="0, 0, 0" 
                     rotation="0 180 0" 
                     scale="0.05 0.05 0.05" 
                     shadow="cast:true; receive:true;" 
                     spherical-env-map="src:#skymap;">
-                </a-obj-model>
+                </a-entity>
 
-                <a-obj-model 
-                     src="#pagodaRoof-obj" 
+                <a-entity 
+                     id="#pagodaRoof-obj" 
+                     obj-model="obj:#pagodaRoof-obj"
                      material="color:grey"
                      position="-0.5, 3.5, 0.2" 
                      rotation="0 180 0" 
                      scale="0.28 0.28 0.28" 
                      shadow="cast:true; receive:true;" 
                      spherical-env-map="src:#skymap;">
-                 </a-obj-model>     
+                </a-entity>     
                  
-                 <a-obj-model 
-                     src="#teapot-obj" 
+                 <a-entity 
+                     id="#teapot-obj" 
+                     obj-model="obj:#teapot-obj"
                      material="color:silver"
                      position="0.6, 0.6, -1" 
                      rotation="0 140 0" 
                      scale="0.016 0.016 0.016" 
                      shadow="cast:true; receive:true;" 
                      spherical-env-map="src:#skymap;">
-                 </a-obj-model>    
+                 </a-entity>    
+
+                 <a-entity 
+                    id="#playButton-obj" 
+                    class="link"
+                    obj-model="obj:#playButton-obj"
+                    material="color:silver"
+                    position="1, 3.5, -4" 
+                    rotation="0 0 0" 
+                    scale="0.2 0.2 0.2" 
+                    shadow="cast:true; receive:true;" 
+                    spherical-env-map="src:#skymap;"
+                    animation="pauseEvents:mouseleave; resumeEvents:mouseenter;"
+                    playMusic=''
+                    >
+                 </a-entity>    
 
 
                  <a-entity 
-                    id="testForest"
+                     id="testForest"
                      class="link"
                      animation-test
                      obj-model="obj:#Forest-obj"
@@ -163,30 +233,40 @@
                      rotation="0 0 0" 
                      scale="0.012 0.012 0.012" 
                      shadow="cast:true; receive:true;" 
-                     animation="property:rotation.z; to:360; easing:linear; autoplay:false; loop:true; dir:normal; dur:4000; pauseEvents:mouseenter; resumeEvents:mouseleave;"
+                     animation="property:rotation.z; to:360; easing:linear; autoplay:false; loop:true; dir:normal; dur:4000; pauseEvents:mouseleave; resumeEvents:mouseenter;";
+                     navigate-to-forest=''
                      >
 
                  </a-entity>   
 
-                 <a-obj-model 
+                 <a-entity 
                     src="#Forest-obj" 
+                    class="link"
+                    obj-model="obj:#Forest-obj"
                     material="color:white"
                     position="-0.7, 2, -4" 
                     rotation="0 0 0" 
                     scale="0.012 0.012 0.012" 
                     shadow="cast:true; receive:true;" 
-                    spherical-env-map="src:#skymap;">
-                 </a-obj-model>   
+                    spherical-env-map="src:#skymap;"
+                    animation="property:rotation.z; to:360; easing:linear; autoplay:false; loop:true; dir:normal; dur:4000; pauseEvents:mouseleave; resumeEvents:mouseenter;"
+                    navigate-to-artic=''
+                    >
+                 </a-entity>   
 
-                <a-obj-model 
+                <a-entity 
                     src="#Forest-obj" 
+                    class="link"
+                    obj-model="obj:#Forest-obj"
                     material="color:white"
                     position="-2.2, 2, -4" 
                     rotation="0 0 0" 
                     scale="0.012 0.012 0.012" 
                     shadow="cast:true; receive:true;" 
-                    spherical-env-map="src:#skymap;">
-                </a-obj-model>   
+                    spherical-env-map="src:#skymap;"
+                    animation="property:rotation.z; to:360; easing:linear; autoplay:false; loop:true; dir:normal; dur:4000; pauseEvents:mouseleave; resumeEvents:mouseenter;"
+                    >
+                </a-entity>   
 
 <!-- Building the scene -->   
                 <a-entity id="plane" 
@@ -194,23 +274,23 @@
                     shadow="receive:true;" material="color:grey; sphericalEnvMap:#skymap; roughness:5; metalness:0.0;">
                 </a-entity>
                 
-                <a-entity id="sky"
+                <!-- <a-entity id="sky"
                     geometry="primitive:sphere; radius:200;"
                     material="shader:flat; src:#skymap; side:back; height:2048; width:2048">
-                </a-entity>
+                </a-entity> -->
 
 
 <!-- Creatintg sound -->   
             
-                <a-entity id="river" d
-                position="10, 0, 10" sound="src: assets/sound/meditationMusic.mp3; autoplay: true"></a-entity> 
+                <a-entity id="meditationMusic" d
+                position="10, 0, 10" sound="src: assets/sound/meditationMusic.mp3; autoplay: false"></a-entity> 
 
                 <!-- <a-entity id="river" d
                 position="10, 0, 10" sound="src: assets/sound/nightSounds.mp3; autoplay: true"></a-entity>  -->
 
 <!-- Ligthing -->   
                 <a-entity light="type:directional; castShadow:true; intensity:0.6; shadowBias:-0.000001; shadowMapWidth:1024; shadowMapHeight:1024;" position="-0.3 1.2 1"></a-entity>
-                <a-entity light="type: ambient; intensity: 0.4; color:#0055a5 ;"></a-entity>
+                <!-- <a-entity light="type: ambient; intensity: 0.4; color:#0055a5 ;"></a-entity> -->
         </a-scene>
     </body>
 </html>
@@ -225,3 +305,5 @@
                                 material="shader:flat; color:black;" >d
                     </a-entity>
                 </a-entity> -->
+
+                <!-- geometry="primitive:ring; radiusInner:0.05; radiusOuter:0.1;" -->
