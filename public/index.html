@@ -9,6 +9,7 @@
 
         <script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
         <script src="https://unpkg.com/aframe-animation-component@^4.1.2/dist/aframe-animation-component.min.js"></script> 
+        <script src="/js/playButtonComponent.js"></script>
 
         <script>
             AFRAME.registerComponent('animation-test', {
@@ -100,10 +101,11 @@
 <!-- Loading in models -->
                 <a-asset-item id='Forest-obj' src="assets/models/Menu.obj"></a-assets-item>                  
 
-                <a-asset-item id='MountainHouse-obj' src="assets/models/MountainHouse.obj"></a-assets-item>
-                <a-asset-item id='pagodaRoof-obj' src="assets/models/pagoda_roof.obj"></a-assets-item>
+                <a-asset-item id='MountainHouse-obj' src="assets/models/MountainHouse2.obj"></a-assets-item>
+                <!-- <a-asset-item id='pagodaRoof-obj' src="assets/models/pagoda_roof.obj"></a-assets-item> -->
                 <a-asset-item id='teapot-obj' src="assets/models/teapot.obj"></a-assets-item>  
                 <a-asset-item id='playButton-obj' src="assets/models/playButton.obj"></a-asset-item>
+                <a-asset-item id='pauseButton-obj' src="assets/models/pauseButton.obj"></a-asset-item>
              
 
 <!-- Loading in textures -->
@@ -212,15 +214,31 @@
                     class="link"
                     obj-model="obj:#playButton-obj"
                     material="color:silver"
+                    position="1, 2.5, -4" 
+                    rotation="0 0 0" 
+                    scale="0.8 0.6 0.6" 
+                    shadow="cast:true; receive:true;" 
+                    spherical-env-map="src:#skymap;"
+                    play_sound
+                    >
+                 </a-entity>    
+
+                 <!-- <a-entity 
+                    id="#pauseButton-obj" 
+                    class="link"
+                    obj-model="obj:#pauseButton-obj"
+                    material="color:silver"
                     position="1, 3.5, -4" 
                     rotation="0 0 0" 
                     scale="0.2 0.2 0.2" 
                     shadow="cast:true; receive:true;" 
                     spherical-env-map="src:#skymap;"
                     animation="pauseEvents:mouseleave; resumeEvents:mouseenter;"
-                    playMusic=''
+                    play_sound
                     >
-                 </a-entity>    
+                 </a-entity>     -->
+
+                 <!-- sound="src: assets/sound/meditationMusic.mp3; volume: 0.1; loop: true" -->
 
 
                  <a-entity 
@@ -282,14 +300,14 @@
 
 <!-- Creatintg sound -->   
             
-                <a-entity id="meditationMusic" d
-                position="10, 0, 10" sound="src: assets/sound/meditationMusic.mp3; autoplay: false"></a-entity> 
+                <a-entity id="meditationMusic" position="10, 0, 10" 
+                sound="src: assets/sound/meditationMusic.mp3;"></a-entity> 
 
                 <!-- <a-entity id="river" d
                 position="10, 0, 10" sound="src: assets/sound/nightSounds.mp3; autoplay: true"></a-entity>  -->
 
 <!-- Ligthing -->   
-                <a-entity light="type:directional; castShadow:true; intensity:0.6; shadowBias:-0.000001; shadowMapWidth:1024; shadowMapHeight:1024;" position="-0.3 1.2 1"></a-entity>
+                <!-- <a-entity light="type:directional; castShadow:true; intensity:0.6; shadowBias:-0.000001; shadowMapWidth:1024; shadowMapHeight:1024;" position="-0.3 1.2 1"></a-entity> -->
                 <!-- <a-entity light="type: ambient; intensity: 0.4; color:#0055a5 ;"></a-entity> -->
         </a-scene>
     </body>
