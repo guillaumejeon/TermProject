@@ -1,6 +1,7 @@
-AFRAME.registerComponent('navigate-to', {
+AFRAME.registerComponent('navigate-to', 
+{
     schema: {
-        goto_url: {type: "string", default: "default" }
+        goto_url: { type: "string", default: "default" }
     },
 
     init: function () {

@@ -10,8 +10,7 @@
 
         <script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
         <script src="https://unpkg.com/aframe-animation-component@^4.1.2/dist/aframe-animation-component.min.js"></script> 
-        <script src="/js/components/play-button-Component.js"></script>
-        <script src="/js/components/play-music-Component.js"></script>
+        <script src="/js/components/music-button-Component.js"></script>
         <script src="/js/components/nagivate-to-Component.js"></script>
         <script src="/js/components/set-music-Component.js"></script>
 
@@ -103,6 +102,7 @@
 
                 
 
+                <!-- User -->
                <a-entity position="-0.5 1.5 0" camera look-controls wasd-controls>
                     <!-- <a-entity   cursor="fuse:true; fuseTimeout:500;"                                    
                                 position="0 0 -1"
@@ -122,6 +122,17 @@
                         position="0 0 -0.5"
                         geometry="primitive:circle; radius: 0.008" material="side: double"
                         raycaster="objects: .link">
+                    </a-entity>
+
+                    <!-- Creatintg sound -->   
+            
+                    <a-entity 
+                        id="mMusic" 
+                        position="10, 0, 10" 
+                        volume="1"
+                        sound="autoplay:true"
+                        set-music="music:meditationMusic"
+                        >
                     </a-entity>
                 </a-entity> 
         
@@ -192,6 +203,7 @@
                     shadow="cast:true; receive:true;" 
                     spherical-env-map="src:#skymap;"
                     animation="pauseEvents:mouseleave; resumeEvents:mouseenter;"
+                    skip-forward-sound
                     >
                  </a-entity>    
 
@@ -206,6 +218,7 @@
                     shadow="cast:true; receive:true;" 
                     spherical-env-map="src:#skymap;"
                     animation="pauseEvents:mouseleave; resumeEvents:mouseenter;"
+                    skip-back-sound
                     >
                  </a-entity>    
 
@@ -269,16 +282,6 @@
                     material="shader:flat; src:#skymap; side:back; height:2048; width:2048">
                 </a-entity> -->
 
-
-<!-- Creatintg sound -->   
-            
-                <a-entity 
-                    id="meditationMusic" 
-                    position="10, 0, 10" 
-                    volume="1"
-                    set-music="music:default"
-                    >
-                </a-entity>
 <!-- Ligthing -->   
 
 
