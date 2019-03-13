@@ -108,10 +108,8 @@
                 <a-asset-item id='playButton-obj' src="assets/models/playButton.obj"></a-asset-item>
                 <a-asset-item id='pauseButton-obj' src="assets/models/pauseButton.obj"></a-asset-item>
                 <a-asset-item id='skipForwardButton-obj' src="assets/models/skipForwardButton.obj"></a-asset-item>
-                <a-asset-item id='skipBackButton-obj' src="assets/models/skipBackButton.obj"></a-asset-item>
 
                 <!-- <a-asset-item id='meditationMusic1' src="assets/sound/meditationMusic.mp3"></a-asset-item> -->
-             
 
 <!-- Loading in textures -->
                 
@@ -149,7 +147,7 @@
 
                 
 
-               <a-entity position="-0.5 1.5 0" camera look-controls wasd-controls>
+               <a-entity position="-0.5 1.5 0" camera look-controls>
                     <!-- <a-entity   cursor="fuse:true; fuseTimeout:500;"                                    
                                 position="0 0 -1"
                                 geometry="primitive:ring; radiusInner:0.02; radiusOuter:0.03;"
@@ -165,8 +163,8 @@
                         animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1"
                         cursor="fuse: true;"
                         material="color: #e0e9da; shader: flat"
-                        position="0 0 -3"
-                        geometry="primitive:circle; radius: 0.08" material="side: double"
+                        position="0 0 -0.5"
+                        geometry="primitive:circle; radius: 0.008" material="side: double"
                         raycaster="objects: .link">
                     </a-entity>
                 </a-entity> 
@@ -245,10 +243,10 @@
                  <a-entity 
                     id="#skipBackButton-obj" 
                     class="link"
-                    obj-model="obj:#skipBackButton-obj"
+                    obj-model="obj:#skipForwardButton-obj"
                     material="color:silver"
                     position="0.4, 2.75, -4" 
-                    rotation="0 0 0" 
+                    rotation="0 180 0" 
                     scale="0.4 0.4 0.4" 
                     shadow="cast:true; receive:true;" 
                     spherical-env-map="src:#skymap;"
