@@ -10,7 +10,10 @@
 
         <script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
         <script src="https://unpkg.com/aframe-animation-component@^4.1.2/dist/aframe-animation-component.min.js"></script> 
-        <script src="/js/playButtonComponent.js"></script>
+        <script src="/js/components/play-button-Component.js"></script>
+        <script src="/js/components/play-music-Component.js"></script>
+        <script src="/js/components/nagivate-to-Component.js"></script>
+        <script src="/js/components/set-music-Component.js"></script>
 
         <script>
             AFRAME.registerComponent('animation-test', {
@@ -41,55 +44,6 @@
                 // pause: function () {},
                 // play: function () {}
             });
-            
-            AFRAME.registerComponent('navigate-to-forest', {
-                schema: {
-                    url: {dafualt: ''}
-                },
-
-                init: function () {
-                    var data = this.data;
-                    var el = this.el;
-
-                    el.addEventListener('click', function () {
-                        window.location.href = "https://www.facebook.com/"
-                    });
-                }
-                
-            })
-
-           AFRAME.registerComponent('navigate-to-artic', {
-                schema: {
-                    url: {dafualt: ''}
-                },
-
-                init: function () {
-                    var data = this.data;
-                    var el = this.el;
-
-                    el.addEventListener('click', function () {
-                        window.location.href = "https://www.instagram.com/?hl=en"
-                    });
-                }
-                
-            })
-
-            AFRAME.registerComponent('playMusic', {
-                init:function () {
-                    let playing = false;
-                    let audio = document.querySelector("#meditationMusic");
-                    this.el.addEventListener('click', () => {
-                        if(!playing){
-                            audio.play();
-                        } else {
-                            audio.pause();
-                            audio.currentTime = 0;
-                        }
-                        playing = !playing;
-                    });
-                }
-            })
-
         </script>
 
     </head>
@@ -108,12 +62,14 @@
                 <a-asset-item id='playButton-obj' src="assets/models/playButton.obj"></a-asset-item>
                 <a-asset-item id='pauseButton-obj' src="assets/models/pauseButton.obj"></a-asset-item>
                 <a-asset-item id='skipForwardButton-obj' src="assets/models/skipForwardButton.obj"></a-asset-item>
+                <a-asset-item id='Cliff-obj' src="assets/models/cliff.obj"></a-asset-item>
 
                 <!-- <a-asset-item id='meditationMusic1' src="assets/sound/meditationMusic.mp3"></a-asset-item> -->
 
 <!-- Loading in textures -->
                 
                 <img crossorigin="anonymous" id="forestTexture" src="/assets/textures/forestTexture.png">
+                <img crossorigin="anonymous" id="cliff-texture" src="/assets/textures/ct2.png">
                 <img crossorigin="anonymous" id="skymap" src="/assets/textures/Image7.jpg">
 
 
@@ -147,7 +103,7 @@
 
                 
 
-               <a-entity position="-0.5 1.5 0" camera look-controls>
+               <a-entity position="-0.5 1.5 0" camera look-controls wasd-controls>
                     <!-- <a-entity   cursor="fuse:true; fuseTimeout:500;"                                    
                                 position="0 0 -1"
                                 geometry="primitive:ring; radiusInner:0.02; radiusOuter:0.03;"
@@ -222,8 +178,7 @@
                     scale="0.8 0.6 0.6" 
                     shadow="cast:true; receive:true;" 
                     spherical-env-map="src:#skymap;"
-                    play_sound
-                    >
+                    play-sound>
                  </a-entity>    
 
                  <a-entity 
@@ -254,6 +209,7 @@
                     >
                  </a-entity>    
 
+<!-- MENU NAVIGATION -->
 
                  <a-entity 
                      id="testForest"
@@ -265,8 +221,8 @@
                      rotation="0 0 0" 
                      scale="0.012 0.012 0.012" 
                      shadow="cast:true; receive:true;" 
-                     animation="property:rotation.z; to:360; easing:linear; autoplay:false; loop:true; dir:normal; dur:4000; pauseEvents:mouseleave; resumeEvents:mouseenter;";
-                     navigate-to-forest=''
+                     animation="property:rotation.z; to:360; easing:linear; autoplay:false; loop:true; dir:normal; dur:4000; pauseEvents:mouseleave; resumeEvents:mouseenter;"
+                     navigate-to="goto_url:https://www.facebook.com/"
                      >
 
                  </a-entity>   
@@ -282,7 +238,7 @@
                     shadow="cast:true; receive:true;" 
                     spherical-env-map="src:#skymap;"
                     animation="property:rotation.z; to:360; easing:linear; autoplay:false; loop:true; dir:normal; dur:4000; pauseEvents:mouseleave; resumeEvents:mouseenter;"
-                    navigate-to-artic=''
+                    navigate-to="goto_url:https://www.instagram.com/?hl=en"
                     >
                  </a-entity>   
 
@@ -299,6 +255,8 @@
                     animation="property:rotation.z; to:360; easing:linear; autoplay:false; loop:true; dir:normal; dur:4000; pauseEvents:mouseleave; resumeEvents:mouseenter;"
                     >
                 </a-entity>   
+
+<!-- END NAVIGATION -->
 
 <!-- Building the scene -->   
                 <a-entity id="plane" 
@@ -318,17 +276,9 @@
                     id="meditationMusic" 
                     position="10, 0, 10" 
                     volume="1"
-                    sound="src: assets/sound/meditationMusic0.mp3;"
+                    set-music="music:default"
                     >
-                </a-entity> 
-
-                <a-entity 
-                    id="meditationMusic" 
-                    position="10, 0, 10" 
-                    sound="src: assets/sound/meditationMusic1.mp3;"
-                    >
-                 </a-entity> 
-
+                </a-entity>
 <!-- Ligthing -->   
 
 
