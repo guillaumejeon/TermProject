@@ -13,6 +13,9 @@
         <script src="/js/components/music-button-Component.js"></script>
         <script src="/js/components/nagivate-to-Component.js"></script>
         <script src="/js/components/set-music-Component.js"></script>
+        <script src="/js/Menu.js"></script>
+
+        <script src="js/skyGradient.js"></script>
 
         <script>
             AFRAME.registerComponent('animation-test', {
@@ -42,6 +45,28 @@
                 // remove: function () {},
                 // pause: function () {},
                 // play: function () {}
+            });
+        </script>
+
+        <script>
+            AFRAME.registerComponent('Menu-toggle', {
+                schema: {},
+                init: function () {
+                    Context_AF = this;
+
+                    this.el.addEventListener('click', function (e) {
+                        console.log('mouseclick')
+                    });
+
+                    this.el.addEventListener('mouseleave', function (e) {
+                        console.log('mouseleave')
+                    });
+
+                    this.el.addEventListener('mouseenter', function (e) {
+                        console.log('mouseenter');
+                    });
+
+                },
             });
         </script>
 
@@ -103,7 +128,7 @@
                 
 
                 <!-- User -->
-               <a-entity position="-0.5 1.5 0" camera look-controls wasd-controls>
+               <a-entity position="0 1.5 0" camera look-controls wasd-controls>
                     <!-- <a-entity   cursor="fuse:true; fuseTimeout:500;"                                    
                                 position="0 0 -1"
                                 geometry="primitive:ring; radiusInner:0.02; radiusOuter:0.03;"
@@ -189,14 +214,60 @@
                      spherical-env-map="src:#skymap;">
                  </a-entity>     -->
 
+                 <a-entity 
+                    id="#playButton-obj" 
+                    class="link"
+                    obj-model="obj:#playButton-obj"
+                    material="color:silver;  visible: true"
+                    position="0.1, 2.5, -4" 
+                    rotation="0 0 0" 
+                    scale="0.7 0.5 0.5" 
+                    shadow="cast:true; receive:true;" 
+                    spherical-env-map="src:#skymap;"
+                    play-sound
+                    >
+                 </a-entity>    
+
+                 <a-entity 
+                    id="#skipForwardButton-obj" 
+                    class="link"
+                    obj-model="obj:#skipForwardButton-obj"
+                    material="color:silver; visible: true"
+                    position="0.8, 2.75, -4" 
+                    rotation="0 0 0" 
+                    scale="0.3 0.3 0.3" 
+                    shadow="cast:true; receive:true;" 
+                    spherical-env-map="src:#skymap;"
+                    animation="pauseEvents:mouseleave; resumeEvents:mouseenter;"
+                    skip-forward-sound
+                    >
+                 </a-entity>    
+
+                 <a-entity 
+                    id="#skipBackButton-obj" 
+                    class="link"
+                    obj-model="obj:#skipForwardButton-obj"
+                    material="color:silver; visible: true"
+                    position="-0.4, 2.75, -4" 
+                    rotation="0 180 0" 
+                    scale="0.3 0.3 0.3" 
+                    shadow="cast:true; receive:true;" 
+                    spherical-env-map="src:#skymap;"
+                    animation="pauseEvents:mouseleave; resumeEvents:mouseenter;"
+                    skip-back-sound
+                    >
+                 </a-entity>    
+
+
                  <a-entity
                     id="#menu"
                     class="link"
-                    geometry="primitive: plane; width: 0.4; height: auto"
-                    position="0.3 2.5 -4" 
+                    geometry="primitive: circle; radius: 0.3"
+                    position="-0.8 2.2 -4" 
                     rotation="0 0 0" 
-                    material="opacity: 0; transparent: true"
-                    text="value: Menu; align: center; color: black; width:6; font:https://cdn.aframe.io/fonts/SourceCodePro.fnt"
+                    material="color: #e0e9da; opacity: 0.3; transparent: true"
+                    text="value: Menu; align: center; color: black; opacity: 0.6; width:3; font:https://cdn.aframe.io/fonts/SourceCodePro.fnt"
+                    Menu-toggle
                     >
                  </a-entity>
 
@@ -209,51 +280,9 @@
                       Use Javascript to create this function.
                 -->
 
-                 <a-entity 
-                    id="#playButton-obj" 
-                    class="link"
-                    obj-model="obj:#playButton-obj"
-                    material="color:silver"
-                    position="0.1, 2.5, -4" 
-                    rotation="0 0 0" 
-                    scale="0.8 0.6 0.6" 
-                    shadow="cast:true; receive:true;" 
-                    spherical-env-map="src:#skymap;"
-                    play-sound>
-                 </a-entity>    
-
-                 <a-entity 
-                    id="#skipForwardButton-obj" 
-                    class="link"
-                    obj-model="obj:#skipForwardButton-obj"
-                    material="color:silver"
-                    position="0.8, 2.75, -4" 
-                    rotation="0 0 0" 
-                    scale="0.4 0.4 0.4" 
-                    shadow="cast:true; receive:true;" 
-                    spherical-env-map="src:#skymap;"
-                    animation="pauseEvents:mouseleave; resumeEvents:mouseenter;"
-                    skip-forward-sound
-                    >
-                 </a-entity>    
-
-                 <a-entity 
-                    id="#skipBackButton-obj" 
-                    class="link"
-                    obj-model="obj:#skipForwardButton-obj"
-                    material="color:silver"
-                    position="-0.4, 2.75, -4" 
-                    rotation="0 180 0" 
-                    scale="0.4 0.4 0.4" 
-                    shadow="cast:true; receive:true;" 
-                    spherical-env-map="src:#skymap;"
-                    animation="pauseEvents:mouseleave; resumeEvents:mouseenter;"
-                    skip-back-sound
-                    >
-                 </a-entity>    
-
 <!-- MENU NAVIGATION -->
 <!-- 
+    
                  <a-entity 
                      id="testForest"
                      class="link"
@@ -307,6 +336,10 @@
                     shadow="receive:true;" material="color:grey; sphericalEnvMap:#skymap; roughness:5; metalness:0.0;">
                 </a-entity>
                 
+                <a-entity id="sky" 
+                          geometry = "primitive: sphere; radius: 65;" 
+                          material="shader: skyGradient; colorTop: #36688D; colorBottom: #BDA589; side: back"></a-entity>
+
                 <!-- <a-entity id="sky"
                     geometry="primitive:sphere; radius:200;"
                     material="shader:flat; src:#skymap; side:back; height:2048; width:2048">
@@ -322,7 +355,7 @@
     </a-entity>
   </a-sun-sky>
                 
-                <a-entity light="type:directional; color: #87ceeb; castShadow:true; intensity:0.6; shadowBias:-0.000001; shadowMapWidth:3840; shadowMapHeight: 2160;" position="-0.3 1.2 1"></a-entity>
+                <a-entity light="type:directional; color: #5A424F; castShadow:true; intensity:0.6; shadowBias:-0.000001; shadowMapWidth:3840; shadowMapHeight: 2160;" position="-0.3 1.2 1"></a-entity>
                 <!-- <a-entity light="type: ambient; intensity: 0.4; color: #fff06b ;"></a-entity> -->
         </a-scene>
     </body>
