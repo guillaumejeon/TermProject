@@ -190,13 +190,24 @@
                  </a-entity>     -->
 
                  <a-entity
+                    id="#menu"
+                    class="link"
                     geometry="primitive: plane; width: 0.4; height: auto"
-                    position="0 2 -4" 
+                    position="0.3 2.5 -4" 
                     rotation="0 0 0" 
                     material="opacity: 0; transparent: true"
-                    text="value: Menu; align: center; color: black; width:3; font:https://cdn.aframe.io/fonts/SourceCodePro.fnt"
+                    text="value: Menu; align: center; color: black; width:6; font:https://cdn.aframe.io/fonts/SourceCodePro.fnt"
                     >
                  </a-entity>
+
+                 <!-- Pseudocode:
+                            Create a global boolean variable that will determine wether or not the menu button has been pressed
+                            If button has been pressed then 
+                                Create a function that will turns the visibility of the object on and off 
+                      Note: Play around with the transparency but I think the user will be be able to click on the objects even if they are not visible
+
+                      Use Javascript to create this function.
+                -->
 
                  <a-entity 
                     id="#playButton-obj" 
