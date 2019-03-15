@@ -48,28 +48,6 @@
             });
         </script>
 
-        <script>
-            AFRAME.registerComponent('Menu-toggle', {
-                schema: {},
-                init: function () {
-                    Context_AF = this;
-
-                    this.el.addEventListener('click', function (e) {
-                        console.log('mouseclick')
-                    });
-
-                    this.el.addEventListener('mouseleave', function (e) {
-                        console.log('mouseleave')
-                    });
-
-                    this.el.addEventListener('mouseenter', function (e) {
-                        console.log('mouseenter');
-                    });
-
-                },
-            });
-        </script>
-
     </head>
     <body>
         <!-- <script> AFRAME.registerComponent('nextScene_onClick', {init: function () {console.log('Hello, World!')} });</script> -->
@@ -91,8 +69,7 @@
                 <!-- <a-asset-item id='meditationMusic1' src="assets/sound/meditationMusic.mp3"></a-asset-item> -->
 
 <!-- Loading in textures -->
-                
-                <img crossorigin="anonymous" id="forestTexture" src="/assets/textures/forestTexture.png">
+
                 <img crossorigin="anonymous" id="cliff-texture" src="/assets/textures/ct2.png">
                 <img crossorigin="anonymous" id="skymap" src="/assets/textures/Image7.jpg">
 
@@ -159,6 +136,14 @@
                         set-music="music:meditationMusic"
                         >
                     </a-entity>
+                    
+                    <!-- <a-entity
+                        id="menuToggle"
+
+                    
+                    >
+                    </a-entity> -->
+
                 </a-entity> 
         
 
@@ -265,9 +250,9 @@
                     geometry="primitive: circle; radius: 0.3"
                     position="-0.8 2.2 -4" 
                     rotation="0 0 0" 
-                    material="color: #e0e9da; opacity: 0.3; transparent: true"
+                    material="color: #e0e9da; opacity: 0.3; transparent: true; visible: true"
                     text="value: Menu; align: center; color: black; opacity: 0.6; width:3; font:https://cdn.aframe.io/fonts/SourceCodePro.fnt"
-                    Menu-toggle
+                    menutoggle
                     >
                  </a-entity>
 
