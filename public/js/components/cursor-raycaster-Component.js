@@ -16,10 +16,23 @@ AFRAME.registerComponent('raycasterlisten', {
 
     tick: function () {
 
+        //var distance = -3;
+
         if (!this.raycaster) { return; }  // Not intersecting.
 
         let intersection = this.raycaster.components.raycaster.getIntersection(this.el);
         if (!intersection) { return; }
-            console.log(intersection.distance);
+        
+        
+        distance = 0 - intersection.distance;
+
+        if (distance < -3)
+        {
+            distance = -3;
+        }
+
+        console.log(distance);
+        var cursor = document.getElementById("#cursor");
+        cursor.setAttribute('position', {x:0, y:0, z:distance});
   }
 });
