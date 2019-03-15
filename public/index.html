@@ -13,6 +13,7 @@
         <script src="/js/components/music-button-Component.js"></script>
         <script src="/js/components/nagivate-to-Component.js"></script>
         <script src="/js/components/set-music-Component.js"></script>
+        <script src="/js/components/cursor-raycaster-Component.js"></script>
         <script src="/js/Menu.js"></script>
 
         <script src="js/skyGradient.js"></script>
@@ -51,7 +52,7 @@
     </head>
     <body>
         <!-- <script> AFRAME.registerComponent('nextScene_onClick', {init: function () {console.log('Hello, World!')} });</script> -->
-        <a-scene shadow="type:basic;" stats; fog="type: linear; color: #AAB; far: 90; near: 0">
+        <a-scene shadow="type:pcfsoft" stats fog="type: linear; color: #AAB; far: 90; near: 0">
             
             <a-assets timeout="3000">
 
@@ -106,7 +107,7 @@
                 
 
                 <!-- User -->
-               <a-entity position="0 1.5 0" camera look-controls wasd-controls>
+               <a-entity position="0 1.5 0" camera look-controls>
                     <!-- <a-entity   cursor="fuse:true; fuseTimeout:500;"                                    
                                 position="0 0 -1"
                                 geometry="primitive:ring; radiusInner:0.02; radiusOuter:0.03;"
@@ -116,6 +117,8 @@
                       event-set__1="_event: mouseenter; color: springgreen"
                       event-set__2="_event: mouseleave; color: black" >
                     </a-entity> -->
+                    
+                    
                     <a-entity
                         animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 50; from: 0.1 0.1 0.1; to: 1 1 1"
                         animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1"
@@ -123,8 +126,9 @@
                         cursor="fuse: true;"
                         material="color: #e0e9da; shader: flat"
                         position="0 0 -0.5"
-                        geometry="primitive:circle; radius: 0.008" material="side: double"
-                        raycaster="objects: .link">
+                        geometry="primitive:circle; radius: 0.006" material="side: double; transparent:true; opacity: 0.5"
+                        raycaster="objects: .link"
+                        >
                     </a-entity>
 
                     <!-- Creatintg sound -->   
@@ -145,6 +149,14 @@
                     >
                     </a-entity> -->
 
+                    <!--
+                    <a-plane
+                        position="0 0 -1"
+                        color="#000" 
+                        height="10" 
+                        width="10"
+                    ></a-plane>
+                    -->
                 </a-entity> 
         
 
@@ -275,12 +287,13 @@
                  <a-entity
                     id="#menu"
                     class="link"
-                    geometry="primitive: circle; radius: 0.2.5"
+                    geometry="primitive: circle; radius: 0.3"
                     position="-0.8 2.2 -4" 
                     rotation="0 0 0" 
                     material="color: #e0e9da; opacity: 0.3; transparent: true; visible: true"
-                    text="value: Menu; align: center; color: black; opacity: 0.6; width:3; font:https://cdn.aframe.io/fonts/SourceCodePro.fnt"
+                    text="value: Menu; align: center; color: black; opacity: 0.6; width:3.5; font:https://cdn.aframe.io/fonts/SourceCodePro.fnt"
                     menutoggle
+                    raycasterlisten
                     >
                  </a-entity>
 
@@ -338,6 +351,7 @@
                     shadow="cast:true; receive:true;" 
                     spherical-env-map="src:#skymap;"
                     animation="property:rotation.z; to:360; easing:linear; autoplay:false; loop:true; dir:normal; dur:4000; pauseEvents:mouseleave; resumeEvents:mouseenter;"
+                    navigate-to="goto_url:index.html"
                     >
                 </a-entity>   
 
@@ -367,7 +381,7 @@
                    repeat="indefinite" easing="linear"></a-animation>
     </a-entity>
   </a-sun-sky>
-                <a-entity light="type:directional; color: #BDA589; castShadow:true; intensity:0.6; shadowBias:-0.000001; shadowMapWidth:3840; shadowMapHeight: 2160;" position="19.963 1.731 -32.544"; scale="0.050 0.050 0.050"></a-entity>
+                <a-entity light="type:directional; color: #FFDB99; castShadow:true; ambient:0.05; intensity:0.9; shadowBias:-0.000001; shadowMapWidth:8192; shadowMapHeight:8192;" position="18.963 1.731 -33.544"; scale="0.050 0.050 0.050"></a-entity>
                 <!-- <a-entity light="type: ambient; intensity: 0.4; color: white ;"></a-entity> -->
         </a-scene>
     </body>

@@ -10,7 +10,10 @@ AFRAME.registerComponent('navigate-to',
 
         el.addEventListener('click', function () 
         {
-            window.location.href = data.goto_url;
+            if (data.goto_url == "default")
+                window.location.reload();
+            else
+                window.location.href = data.goto_url;
         });
     }
     
