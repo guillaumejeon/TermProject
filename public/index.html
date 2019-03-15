@@ -51,7 +51,7 @@
     </head>
     <body>
         <!-- <script> AFRAME.registerComponent('nextScene_onClick', {init: function () {console.log('Hello, World!')} });</script> -->
-        <a-scene shadow="type:basic;" stats>
+        <a-scene shadow="type:basic;" stats; fog="type: linear; color: #AAB; far: 90; near: 0">
             
             <a-assets timeout="3000">
 
@@ -66,6 +66,7 @@
                 <a-asset-item id='skipForwardButton-obj' src="assets/models/skipForwardButton.obj"></a-asset-item>
                 <a-asset-item id='Cliff-obj' src="assets/models/cliff.obj"></a-asset-item>
                 <a-asset-item id='Everything-obj' src="assets/models/Everything.obj"></a-asset-item>
+                <a-asset-item id='Clouds-obj' src="assets/models/Clouds.obj"></a-asset-item>
                 <!-- <a-asset-item id='meditationMusic1' src="assets/sound/meditationMusic.mp3"></a-asset-item> -->
 
 <!-- Loading in textures -->
@@ -177,6 +178,17 @@
                     spherical-env-map="src:#skymap;">
                 </a-entity>
 
+                <a-entity
+                    id="#Clouds-obj" 
+                    obj-model="obj:#Clouds-obj"
+                    material="color:grey"
+                    position="0.2, 0.5, -34" 
+                    rotation="0 0 0" 
+                    scale="0.2 0.2 0.2" 
+                    shadow="cast:true; receive:true;" 
+                    spherical-env-map="src:#skymap;">
+                </a-entity>
+
                 <a-entity 
                      id="#pagodaRoof-obj" 
                      obj-model="obj:#pagodaRoof-obj"
@@ -247,7 +259,7 @@
                  <a-entity
                     id="#menu"
                     class="link"
-                    geometry="primitive: circle; radius: 0.3"
+                    geometry="primitive: circle; radius: 0.2.5"
                     position="-0.8 2.2 -4" 
                     rotation="0 0 0" 
                     material="color: #e0e9da; opacity: 0.3; transparent: true; visible: true"
@@ -339,9 +351,8 @@
                    repeat="indefinite" easing="linear"></a-animation>
     </a-entity>
   </a-sun-sky>
-                
-                <a-entity light="type:directional; color: #5A424F; castShadow:true; intensity:0.6; shadowBias:-0.000001; shadowMapWidth:3840; shadowMapHeight: 2160;" position="-0.3 1.2 1"></a-entity>
-                <!-- <a-entity light="type: ambient; intensity: 0.4; color: #fff06b ;"></a-entity> -->
+                <a-entity light="type:directional; color: #BDA589; castShadow:true; intensity:0.6; shadowBias:-0.000001; shadowMapWidth:3840; shadowMapHeight: 2160;" position="19.963 1.731 -32.544"; scale="0.050 0.050 0.050"></a-entity>
+                <!-- <a-entity light="type: ambient; intensity: 0.4; color: white ;"></a-entity> -->
         </a-scene>
     </body>
 </html>
