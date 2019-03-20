@@ -6,7 +6,10 @@ function SetMusic(music)
     {
         src: relativePath + music + ".mp3"
     });
-
+    document.getElementById('#menu').setAttribute("text",
+    {
+        value: music
+    });
     console.log(music);
 }
 

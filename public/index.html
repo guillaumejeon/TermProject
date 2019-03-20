@@ -51,11 +51,11 @@
     </head>
     <body>
         <!-- <script> AFRAME.registerComponent('nextScene_onClick', {init: function () {console.log('Hello, World!')} });</script> -->
-        <a-scene loading-screen="dotsColor: red; backgroundColor: black" shadow="type:pcfsoft" stats fog="type: linear; color: #AAB; far: 90; near: 0">
+        <a-scene shadow="type:pcfsoft" stats fog="type: linear; color: #AAB; far: 90; near: 0">
           
-            <a-entity oculus-touch-controls="hand: left; model:true"></a-entity>
-            <a-entity oculus-touch-controls="hand: right; model:true"></a-entity>        
-            
+            <a-entity laser-controls="hand: left" raycaster="objects: .links; far: 5"></a-entity>
+            <a-entity laser-controls="hand: left" raycaster="objects: .links; far: 5"></a-entity>
+
             <a-assets timeout="3000">
 
 <!-- Loading in models -->
@@ -130,7 +130,7 @@
                         material="color: #e0e9da; shader: flat"
                         position="0 0 -0.5"
                         geometry="primitive:circle; radius: 0.006" material="side: double; transparent:true; opacity: 0.5"
-                        raycaster="objects: .link, .collision"
+                        raycaster="objects: .link"
                         >
                     </a-entity>
                     -->
@@ -248,7 +248,7 @@
                     class="link"
                     obj-model="obj:#playButton-obj"
                     material="color:silver;  visible: true"
-                    position="0.1, 2.5, -4" 
+                    position="0.1, 1.3, -4" 
                     rotation="0 0 0" 
                     scale="0.7 0.5 0.5" 
                     shadow="cast:true; receive:true;" 
@@ -262,7 +262,7 @@
                     class="link"
                     obj-model="obj:#skipForwardButton-obj"
                     material="color:silver; visible: true"
-                    position="0.8, 2.75, -4" 
+                    position="0.8, 1.55, -4" 
                     rotation="0 0 0" 
                     scale="0.3 0.3 0.3" 
                     shadow="cast:true; receive:true;" 
@@ -277,7 +277,7 @@
                     class="link"
                     obj-model="obj:#skipForwardButton-obj"
                     material="color:silver; visible: true"
-                    position="-0.4, 2.75, -4" 
+                    position="-0.4, 1.55, -4" 
                     rotation="0 180 0" 
                     scale="0.3 0.3 0.3" 
                     shadow="cast:true; receive:true;" 
@@ -291,8 +291,8 @@
                  <a-entity
                     id="#menu"
                     class="link"
-                    geometry="primitive: circle; radius: 0.3"
-                    position="-0.8 2.2 -4" 
+                    geometry="primitive: plane; width: 1; height:0.35;"
+                    position="-0.8 2.6 -4" 
                     rotation="0 0 0" 
                     material="color: #e0e9da; opacity: 0.3; transparent: true; visible: true"
                     text="value: Menu; align: center; color: black; opacity: 0.6; width:3.5; font:https://cdn.aframe.io/fonts/SourceCodePro.fnt"
