@@ -3,7 +3,7 @@ AFRAME.registerComponent('get-music', {
         let playing = false;
         let audio = document.querySelector("#meditationMusic");
         
-        this.el.addEventListener('click', () => {
+        this.el.addEventListener('triggerdown', () => {
             if(!playing){
                 audio.play();
             } else {

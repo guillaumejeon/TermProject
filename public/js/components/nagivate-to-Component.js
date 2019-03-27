@@ -8,7 +8,7 @@ AFRAME.registerComponent('navigate-to',
         var el = this.el;
         var data = this.data;
 
-        el.addEventListener('click', function () 
+        el.addEventListener('mouseenter', function () 
         {
             if (data.goto_url == "default")
                 window.location.reload();

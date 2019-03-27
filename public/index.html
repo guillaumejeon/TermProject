@@ -44,17 +44,19 @@
                 // tick: function () {},
                 // remove: function () {},
                 // pause: function () {},
-                // play: function () {}
+                // play: function () {}    
+
             });
+            
         </script>
 
     </head>
     <body>
         <!-- <script> AFRAME.registerComponent('nextScene_onClick', {init: function () {console.log('Hello, World!')} });</script> -->
-        <a-scene shadow="type:pcfsoft" stats fog="type: linear; color: #AAB; far: 90; near: 0">
-          
-            <a-entity laser-controls="hand: left" raycaster="objects: .links; far: 5"></a-entity>
-            <a-entity laser-controls="hand: left" raycaster="objects: .links; far: 5"></a-entity>
+        <a-scene log="Hello! I'm loaded!" shadow="type:pcfsoft" stats fog="type: linear; color: #AAB; far: 90; near: 0">
+        
+            <a-entity laser-controls="hand: left" raycaster="objects: .link; far: 10"></a-entity>
+            <a-entity laser-controls="hand: right" raycaster="objects: .link; far: 10"></a-entity>
 
             <a-assets timeout="3000">
 
@@ -109,7 +111,7 @@
                 
 
                 <!-- User -->
-               <a-entity position="0 1.5 0" camera look-controls>
+               <a-entity position="0 1.5 0" camera>
                     <!-- <a-entity   cursor="fuse:true; fuseTimeout:500;"                                    
                                 position="0 0 -1"
                                 geometry="primitive:ring; radiusInner:0.02; radiusOuter:0.03;"
@@ -152,14 +154,14 @@
                     >
                     </a-entity> -->
 
-                    <!--
                     <a-plane
                         position="0 0 -1"
                         color="#000" 
                         height="10" 
                         width="10"
+
+                        animation="property: material.opacity; to: 0; delay: 1000; dur: 1000; easing: linear"
                     ></a-plane>
-                    -->
                 </a-entity> 
         
 
@@ -355,6 +357,7 @@
                     spherical-env-map="src:#skymap;"
                     animation="property:rotation.z; to:360; easing:linear; autoplay:false; loop:true; dir:normal; dur:4000; pauseEvents:mouseleave; resumeEvents:mouseenter;"
                     navigate-to="goto_url:index.html"
+                    animation-test
                     >
                 </a-entity>   
 
