@@ -72,6 +72,9 @@
                 <a-asset-item id='Cliff-obj' src="assets/models/cliff.obj"></a-asset-item>
                 <a-asset-item id='Everything-obj' src="assets/models/Everything.obj"></a-asset-item>
                 <a-asset-item id='Clouds-obj' src="assets/models/Clouds.obj"></a-asset-item>
+                <a-asset-item id='temple-obj' src="assets/models/temple_LowPoly.obj"></a-asset-item>
+                
+                
                 <!-- <a-asset-item id='meditationMusic1' src="assets/sound/meditationMusic.mp3"></a-asset-item> -->
 
 <!-- Loading in textures -->
@@ -111,7 +114,7 @@
                 
 
                 <!-- User -->
-               <a-entity position="0 1.5 0" camera>
+               <a-entity position="0 2 -2" camera look-controls>
                     <!-- <a-entity   cursor="fuse:true; fuseTimeout:500;"                                    
                                 position="0 0 -1"
                                 geometry="primitive:ring; radiusInner:0.02; radiusOuter:0.03;"
@@ -189,14 +192,26 @@
                     class="collision"
                     obj-model="obj:#Everything-obj"
                     material="color:grey"
-                    position="0.2, 0.5, -34" 
+                    position="0.2, 0.5, -32" 
                     rotation="0 0 0" 
                     scale="0.05 0.05 0.05" 
                     shadow="cast:true; receive:true;" 
                     spherical-env-map="src:#skymap;">
                 </a-entity>
 
-                <a-entity
+                <!-- <a-entity
+                    id="#temple-obj"
+                    class="collision"
+                    obj-model="obj:#temple-obj"
+                    material="color:grey"
+                    position="0, 0, -3" 
+                    rotation="0 180 0" 
+                    scale="0.05 0.05 0.05" 
+                    shadow="cast:true; receive:true;" 
+                    spherical-env-map="src:#skymap;">
+                </a-entity> -->
+
+                <!-- <a-entity
                     id="#Clouds-obj" 
                     obj-model="obj:#Clouds-obj"
                     material="color:grey"
@@ -205,7 +220,7 @@
                     scale="0.2 0.2 0.2" 
                     shadow="cast:true; receive:true;" 
                     spherical-env-map="src:#skymap;">
-                </a-entity>
+                </a-entity> -->
 
                 <a-box
                     color="red"
@@ -250,7 +265,7 @@
                     class="link"
                     obj-model="obj:#playButton-obj"
                     material="color:silver;  visible: true"
-                    position="0.1, 1.3, -4" 
+                    position="-0.3, 1.3, -6.5" 
                     rotation="0 0 0" 
                     scale="0.7 0.5 0.5" 
                     shadow="cast:true; receive:true;" 
@@ -264,7 +279,7 @@
                     class="link"
                     obj-model="obj:#skipForwardButton-obj"
                     material="color:silver; visible: true"
-                    position="0.8, 1.55, -4" 
+                    position="0.3, 1.55, -6.5" 
                     rotation="0 0 0" 
                     scale="0.3 0.3 0.3" 
                     shadow="cast:true; receive:true;" 
@@ -279,7 +294,7 @@
                     class="link"
                     obj-model="obj:#skipForwardButton-obj"
                     material="color:silver; visible: true"
-                    position="-0.4, 1.55, -4" 
+                    position="-0.6, 1.55, -6.5" 
                     rotation="0 180 0" 
                     scale="0.3 0.3 0.3" 
                     shadow="cast:true; receive:true;" 
@@ -294,7 +309,7 @@
                     id="#menu"
                     class="link"
                     geometry="primitive: plane; width: 1; height:0.35;"
-                    position="-0.8 2.6 -4" 
+                    position="-0.8 2.6 -5" 
                     rotation="0 0 0" 
                     material="color: #e0e9da; opacity: 0.3; transparent: true; visible: true"
                     text="value: Menu; align: center; color: black; opacity: 0.6; width:3.5; font:https://cdn.aframe.io/fonts/SourceCodePro.fnt"
@@ -350,7 +365,7 @@
                     class="link"
                     obj-model="obj:#Forest-obj"
                     material="color:white"
-                    position="-2.2, 2, -4" 
+                    position="-2.2, 1.9, -9" 
                     rotation="0 0 0" 
                     scale="0.012 0.012 0.012" 
                     shadow="cast:true; receive:true;" 
@@ -361,6 +376,22 @@
                     >
                 </a-entity>   
 
+                <!-- <a-entity id="sphere" geometry="primitive: sphere; radius: 6"
+                    material="color: #FFDB99; shader: flat"
+                    position="35 5 -58"
+                    light="type: point; intensity: 0.02"
+                    animation="light: intensity; easing: easeInOutQuad; dir: alternate; dur: 1000; to: 0.5; loop: true"
+                    >
+                </a-entity> -->
+
+                <a-entity id="sphere2" geometry="primitive: sphere; radius: 0.5;"
+                    material="color: #EFEFEF; shader: flat"
+                    position="-8 3 -12"
+                    light="type: point; intensity: 0.05"
+                    animation="light.intensity; easing: easeInOutQuad; dir: alternate; dur: 1000; to: 0.5; loop: true"
+                    >
+                </a-entity>
+
 <!-- END NAVIGATION -->
 
 <!-- Building the scene -->   
@@ -369,9 +400,14 @@
                     shadow="receive:true;" material="color:grey; sphericalEnvMap:#skymap; roughness:5; metalness:0.0;">
                 </a-entity>
                 
+                              
                 <a-entity id="sky" 
+                geometry = "primitive: sphere; radius: 65;" 
+                material="shader: skyGradient; colorTop: #36688D; colorBottom: #BDA589; side: back"></a-entity>
+
+                <!-- <a-entity id="sky" 
                           geometry = "primitive: sphere; radius: 65;" 
-                          material="shader: skyGradient; colorTop: #36688D; colorBottom: #BDA589; side: back"></a-entity>
+                          material="shader: skyGradient; colorTop: #36688D; colorBottom: #BDA589; side: back"></a-entity> -->
 
                 <!-- <a-entity id="sky"
                     geometry="primitive:sphere; radius:200;"
@@ -387,7 +423,8 @@
                    repeat="indefinite" easing="linear"></a-animation>
     </a-entity>
   </a-sun-sky>
-                <a-entity light="type:directional; color: #FFDB99; castShadow:true; ambient:0.05; intensity:0.9; shadowBias:-0.000001; shadowMapWidth:8192; shadowMapHeight:8192;" position="18.963 1.731 -33.544"; scale="0.050 0.050 0.050"></a-entity>
+                <a-entity light="type:directional; color: #FFDB99; castShadow:true; ambient:0.09; intensity:1; shadowBias:-0.000001; shadowMapWidth:2048; shadowMapHeight:2048;" position="18.963 1.731 -33.544"; scale="0.050 0.050 0.050"></a-entity>
+                <!-- <a-entity light="type:directional; color: #FFDB99; castShadow:true; ambient:0.09; intensity:1; shadowBias:-0.000001; shadowMapWidth:1000; shadowMapHeight:1000;" position="18.963 1.731 -33.544"; scale="0.050 0.050 0.050"></a-entity> -->
                 <!-- <a-entity light="type: ambient; intensity: 0.4; color: white ;"></a-entity> -->
         </a-scene>
     </body>
