@@ -1,39 +1,40 @@
 //console.log("Test component is working");
-let toggle = true;
 let toggleClass = "link";
 
-AFRAME.registerComponent('menutoggle', {
+AFRAME.registerComponent('menu-toggle', {
     schema: {},
         init: function (){
-            Context_AF = this;
 
-            var el = this.el
+            console.log("HELLO~!")
+
             var sBackButton = document.getElementById("#skipBackButton-obj");
             var fBackButton = document.getElementById("#skipForwardButton-obj")
             var playButton = document.getElementById("#playButton-obj");
 
-            // var toggle = true;
+            this.el.addEventListener('gripdown', function (){
+                console.log('gripdown');
 
-            el.addEventListener('click', function (e){
-                if (toggle)
-                {
-                    toggle = false;
-                    toggleClass = "unlink"
-                }
-                else
-                {
-                    toggle = true;
-                    toggleClass = "link"
-                }
-                
-                sBackButton.setAttribute('visible', toggle);
+                sBackButton.setAttribute('visible', true);
                 sBackButton.className = toggleClass;
 
-                fBackButton.setAttribute('visible', toggle);
+                fBackButton.setAttribute('visible', true);
                 fBackButton.className = toggleClass;
 
-                playButton.setAttribute('visible', toggle);
+                playButton.setAttribute('visible', true);
                 playButton.className = toggleClass;
-            })
+            });
+
+            this.el.addEventListener('gripup', function (){
+                console.log('gripup');
+
+                sBackButton.setAttribute('visible', false);
+                sBackButton.className = toggleClass;
+
+                fBackButton.setAttribute('visible', false);
+                fBackButton.className = toggleClass;
+
+                playButton.setAttribute('visible', false);
+                playButton.className = toggleClass;
+            });
         }
-    })
+    });

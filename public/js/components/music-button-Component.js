@@ -33,7 +33,7 @@ AFRAME.registerComponent('play-sound',
 
         this.el.setAttribute("obj-model", "obj:#pauseButton-obj");
 
-        this.el.addEventListener("click", function (e)
+        this.el.addEventListener("click", function ()
         {   
             if (m_IsPlaying)
             {
@@ -56,12 +56,12 @@ AFRAME.registerComponent('play-sound',
             }
         });
 
-        music.addEventListener("sound-loaded", function (e) 
+        music.addEventListener("sound-loaded", function () 
         {
             console.log("loaded");
         });
 
-        music.addEventListener("sound-ended", function (e) 
+        music.addEventListener("sound-ended", function () 
         {
             if (!skipped && !paused)
             {
@@ -91,7 +91,7 @@ AFRAME.registerComponent('skip-forward-sound',
 
         var data = this.data;
 
-        this.el.addEventListener("click", function (e)
+        this.el.addEventListener("click", function ()
         {
             skipped = true;
 
@@ -114,7 +114,7 @@ AFRAME.registerComponent('skip-back-sound',
 
         var data = this.data;
 
-        this.el.addEventListener("click", function (e)
+        this.el.addEventListener("click", function ()
         {
             skipped = true;
 

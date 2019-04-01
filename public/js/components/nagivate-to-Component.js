@@ -4,11 +4,11 @@ AFRAME.registerComponent('navigate-to',
         goto_url: { type: "string", default: "default" }
     },
 
-    init: function () {
+    tick: function () {
         var el = this.el;
         var data = this.data;
 
-        el.addEventListener('mouseenter', function () 
+        this.el.addEventListener("click", function ()
         {
             if (data.goto_url == "default")
                 window.location.reload();
@@ -16,5 +16,4 @@ AFRAME.registerComponent('navigate-to',
                 window.location.href = data.goto_url;
         });
     }
-    
 })

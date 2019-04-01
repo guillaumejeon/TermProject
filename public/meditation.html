@@ -13,47 +13,41 @@
         <script src="/js/components/music-button-Component.js"></script>
         <script src="/js/components/nagivate-to-Component.js"></script>
         <script src="/js/components/set-music-Component.js"></script>
+        <script src="js/components/click-Component.js"></script>
         <script src="/js/Menu.js"></script>
 
         <script src="js/skyGradient.js"></script>
 
         <script>
-            AFRAME.registerComponent('animation-test', {
-                schema: {},
-                init: function () {
-                    Context_AF = this;
+            //AFRAME.registerComponent('recieve-controller-input', {
+            //    init:function () {
+            //        this.el.addEventListener("triggerdown");
+            //    }
+            //});
 
-                    this.el.addEventListener('click', function (e) {
-                        console.log('mouseclick')
-                        //this.el.setAttribute('animation', 'property:rotation; to:0 360 0; easing:linear; loop:true; dir:normal; dur:1000;');
-                    });
+            //AFRAME.registerComponent('animation-test', {
+                //schema: {},
+                //init: function () {
+                //    Context_AF = this;
 
-                    this.el.addEventListener('mouseleave', function (e) {
-                        console.log('mouseleave')
-                        //Context_AF.el.setAttribute('animation', 'property:rotation; to:0 360 0; easing:linear; loop:true; dir:normal; dur:1000;');
-                    });
-
-                    this.el.addEventListener('mouseenter', function (e) {
-                        console.log('mouseenter');
-                        //Context_AF.el.removeAttribute('animation');
-                    });
+                    
 
                     //animation="property:rotation; to:0 360 0; easing:linear; loop:true; dir:normal; dur:1000; startEvents:mouseenter; pauseEvent:mouseleave; resumeEvents:mouseleave;"
-                },
+                //},
                 // update: function () {},
                 // tick: function () {},
                 // remove: function () {},
                 // pause: function () {},
                 // play: function () {}    
 
-            });
+            //});
             
         </script>
 
     </head>
     <body>
         <!-- <script> AFRAME.registerComponent('nextScene_onClick', {init: function () {console.log('Hello, World!')} });</script> -->
-        <a-scene log="Hello! I'm loaded!" shadow="type:pcfsoft" stats fog="type: linear; color: #AAB; far: 90; near: 0">
+        <a-scene menu-toggle recieve-controller-input shadow="type:pcfsoft" stats fog="type: linear; color: #AAB; far: 90; near: 0">
         
             <a-entity laser-controls="hand: left" raycaster="objects: .link; far: 10"></a-entity>
             <a-entity laser-controls="hand: right" raycaster="objects: .link; far: 10"></a-entity>
@@ -313,7 +307,7 @@
                     rotation="0 0 0" 
                     material="color: #e0e9da; opacity: 0.3; transparent: true; visible: true"
                     text="value: Menu; align: center; color: black; opacity: 0.6; width:3.5; font:https://cdn.aframe.io/fonts/SourceCodePro.fnt"
-                    menutoggle
+                    
                     >
                  </a-entity>
 
@@ -371,24 +365,24 @@
                     shadow="cast:true; receive:true;" 
                     spherical-env-map="src:#skymap;"
                     animation="property:rotation.z; to:360; easing:linear; autoplay:false; loop:true; dir:normal; dur:4000; pauseEvents:mouseleave; resumeEvents:mouseenter;"
-                    navigate-to="goto_url:index.html"
-                    animation-test
+                    navigate-to="goto_url:meditation.html"
+                    click
                     >
                 </a-entity>   
 
-                <!-- <a-entity id="sphere" geometry="primitive: sphere; radius: 6"
+                <a-entity id="sun" geometry="primitive: sphere; radius: 6"
                     material="color: #FFDB99; shader: flat"
                     position="35 5 -58"
                     light="type: point; intensity: 0.02"
                     animation="light: intensity; easing: easeInOutQuad; dir: alternate; dur: 1000; to: 0.5; loop: true"
                     >
-                </a-entity> -->
+                </a-entity>
 
-                <a-entity id="sphere2" geometry="primitive: sphere; radius: 0.5;"
+                <a-entity id="breath-buddy" geometry="primitive: sphere; radius: 0.5;"
                     material="color: #EFEFEF; shader: flat"
                     position="-8 3 -12"
                     light="type: point; intensity: 0.05"
-                    animation="light.intensity; easing: easeInOutQuad; dir: alternate; dur: 1000; to: 0.5; loop: true"
+                    animation="property: scale; easing: easeInOutQuad; dir: alternate; dur: 5000; to: 0.5 0.5 0.5; loop: true"
                     >
                 </a-entity>
 
@@ -402,7 +396,7 @@
                 
                               
                 <a-entity id="sky" 
-                geometry = "primitive: sphere; radius: 65;" 
+                geometry = "primitive: sphere; radius: 85;" 
                 material="shader: skyGradient; colorTop: #36688D; colorBottom: #BDA589; side: back"></a-entity>
 
                 <!-- <a-entity id="sky" 
