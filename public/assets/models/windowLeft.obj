@@ -1,0 +1,20 @@
+# This file uses meters as units for non-parametric coordinates.
+
+mtllib windowLeft.mtl
+g default
+v -69.522141 14.108810 653.872207
+v -69.522141 -11.616364 653.872207
+v -69.522141 14.108810 543.375864
+v -69.522141 -11.616364 543.375864
+vt 0.000000 1.000000
+vt 0.000000 0.000000
+vt 1.000000 0.000000
+vt 1.000000 1.000000
+vn 1.000000 0.000000 0.000000
+vn 1.000000 0.000000 0.000000
+vn 1.000000 0.000000 0.000000
+vn 1.000000 0.000000 0.000000
+s off
+g polySurface162 Windows group1
+usemtl edited_pillars_UV_aiStandardSurface1SG
+f 1/1/1 2/2/2 4/3/3 3/4/4

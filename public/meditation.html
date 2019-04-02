@@ -68,7 +68,12 @@
                 <a-asset-item id='Clouds-obj' src="assets/models/Clouds.obj"></a-asset-item>
                 <a-asset-item id='temple-obj' src="assets/models/temple_LowPoly.obj"></a-asset-item>
                 
-                
+                <a-asset-item id='lowPolytemple-obj' src="assets/models/lowPolyEnvironement.obj"></a-asset-item>
+
+                <a-asset-item id='Window-obj' src="assets/models/Window.obj"></a-asset-item>
+                <a-asset-item id='windowLeft-obj' src="assets/models/windowLeft.obj"></a-asset-item>
+                <a-asset-item id='windowBack-obj' src="assets/models/windowBack.obj"></a-asset-item>
+                <a-asset-item id='windowRight-obj' src="assets/models/windowRight.obj"></a-asset-item>
                 <!-- <a-asset-item id='meditationMusic1' src="assets/sound/meditationMusic.mp3"></a-asset-item> -->
 
 <!-- Loading in textures -->
@@ -181,7 +186,7 @@
                     shadow="cast:true; receive:true;" 
                     spherical-env-map="src:#skymap;">
                 </a-entity> -->
-                <a-entity
+                <!-- <a-entity
                     id="#Everything-obj"
                     class="collision"
                     obj-model="obj:#Everything-obj"
@@ -191,7 +196,7 @@
                     scale="0.05 0.05 0.05" 
                     shadow="cast:true; receive:true;" 
                     spherical-env-map="src:#skymap;">
-                </a-entity>
+                </a-entity> -->
 
                 <!-- <a-entity
                     id="#temple-obj"
@@ -204,6 +209,66 @@
                     shadow="cast:true; receive:true;" 
                     spherical-env-map="src:#skymap;">
                 </a-entity> -->
+
+                <a-entity
+                    id="#lowPolytemple-obj"
+                    class="collision"
+                    obj-model="obj:#lowPolytemple-obj"
+                    material="color:grey"
+                    position="0, 1.5, -30" 
+                    rotation="0 0 0" 
+                    scale="0.05 0.05 0.05" 
+                    shadow="cast:true; receive:true;" 
+                    spherical-env-map="src:#skymap;">
+                </a-entity>
+<!-- 
+            <a-entity
+                id="#Window-obj"
+                class="collision"
+                obj-model="obj:#Window-obj"
+                material="color:grey"
+                position="0.2, 1.5, -30" 
+                rotation="0 0 0" 
+                scale="0.05 0.05 0.05" 
+                shadow="cast:true; receive:true;" 
+                spherical-env-map="src:#skymap;">
+            </a-entity> -->
+
+            <a-entity
+                id="#windowLeft-obj"
+                class="collision"
+                obj-model="obj:#windowLeft-obj"
+                material="color:grey; emissive:#BDA589; emissiveIntensity:0.5;"
+                position="0, 1.5, -30" 
+                rotation="0 0 0" 
+                scale="0.05 0.05 0.05" 
+                shadow="cast:true; receive:true;" 
+                spherical-env-map="src:#skymap;">
+            </a-entity>
+
+            <a-entity
+                id="#windowBack-obj"
+                class="collision"
+                obj-model="obj:#windowBack-obj"
+                material="color:grey; emissive:#BDA589; emissiveIntensity:0.45;"
+                position="0, 1.5, -30" 
+                rotation="0 0 0" 
+                scale="0.05 0.05 0.05" 
+                shadow="cast:true; receive:true;" 
+                spherical-env-map="src:#skymap;">
+            </a-entity>
+
+            <a-entity
+                id="#windowRight-obj"
+                class="collision"
+                obj-model="obj:#windowRight-obj"
+                material="color:grey;  emissive:#BDA589; emissiveIntensity:0.7;"
+                position="0, 1.5, -30" 
+                rotation="0 0 0" 
+                scale="0.05 0.05 0.05" 
+                shadow="cast:true; receive:true;" 
+                spherical-env-map="src:#skymap;">
+            </a-entity>
 
                 <!-- <a-entity
                     id="#Clouds-obj" 
