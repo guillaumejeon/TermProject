@@ -4,7 +4,7 @@ function SetMusic(music)
 {
     document.querySelector('#mMusic').setAttribute("sound",
     {
-        src: relativePath + music + ".mp3"
+        src: relativePath + music + ".ogg"
     });
     document.getElementById('#menu').setAttribute("text",
     {

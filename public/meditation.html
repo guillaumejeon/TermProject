@@ -78,7 +78,6 @@
 
 <!-- Loading in textures -->
 
-                <img crossorigin="anonymous" id="cliff-texture" src="/assets/textures/ct2.png">
                 <img crossorigin="anonymous" id="skymap" src="/assets/textures/Image7.jpg">
 
 
@@ -92,52 +91,11 @@
 
 
 
-<!-- Mouse controls -->
-
-                <!-- <a-entity id="links" layout="type: line; margin: 1.5" position="0 -1 -4">
-                    <a-entity template="src: #link" data-src="#cubes" data-thumb="#cubes-thumb"></a-entity>
-                    <a-entity template="src: #link" data-src="#city" data-thumb="#city-thumb"></a-entity>
-                    <a-entity template="src: #link" data-src="#sechelt" data-thumb="#sechelt-thumb"></a-entity>
-                </a-entity> -->
-
-                <!-- <a-entity position="-0.5 1.5 0" camera look-controls wasd-controls>
-                    <a-cursor id="cursor"
-                      animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
-                      animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
-                      event-set__1="_event: mouseenter; color: springgreen"
-                      event-set__2="_event: mouseleave; color: black"
-                      fuse="true"
-                      raycaster="objects: .link"></a-cursor>
-                </a-entity> -->
-
-                
+<!-- Mouse controls -->               
 
                 <!-- User -->
                <a-entity position="0 2 -2" camera look-controls>
-                    <!-- <a-entity   cursor="fuse:true; fuseTimeout:500;"                                    
-                                position="0 0 -1"
-                                geometry="primitive:ring; radiusInner:0.02; radiusOuter:0.03;"
-                                material="shader:flat; color:black;"
-                                animation__click="property: scale; startEvents: click; from: 0.1 0.1 0.1; to: 1 1 1; dur: 150"
-                      animation__fusing="property: fusing; startEvents: fusing; from: 1 1 1; to: 0.1 0.1 0.1; dur: 1500"
-                      event-set__1="_event: mouseenter; color: springgreen"
-                      event-set__2="_event: mouseleave; color: black" >
-                    </a-entity> -->
-                    
-                    <!--                    
-                    <a-entity
-                        id="#cursor"
-                        animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 50; from: 0.1 0.1 0.1; to: 1 1 1"
-                        animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1"
-                        animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1"
-                        cursor="fuse: true;"
-                        material="color: #e0e9da; shader: flat"
-                        position="0 0 -0.5"
-                        geometry="primitive:circle; radius: 0.006" material="side: double; transparent:true; opacity: 0.5"
-                        raycaster="objects: .link"
-                        >
-                    </a-entity>
-                    -->
+
                     <!-- Creatintg sound -->   
             
                     <a-entity 
@@ -149,13 +107,13 @@
                         >
                     </a-entity>
                     
-                    <!-- <a-entity
+                    <a-entity
                         id="menuToggle"
 
                     
                     >
-                    </a-entity> -->
-
+                    </a-entity>
+<!-- 
                     <a-plane
                         position="0 0 -1"
                         color="#000" 
@@ -163,7 +121,7 @@
                         width="10"
 
                         animation="property: material.opacity; to: 0; delay: 1000; dur: 1000; easing: linear"
-                    ></a-plane>
+                    ></a-plane> -->
                 </a-entity> 
         
 
@@ -174,40 +132,6 @@
                                      rain; 
                                      color: #24CAFF; 
                                      particleCount: 1000">
-                </a-entity> -->
-
-                <!-- <a-entity
-                    id="#MountainHouse-obj" 
-                    obj-model="obj:#MountainHouse-obj"
-                    material="color:grey"
-                    position="0, 0, 0" 
-                    rotation="0 180 0" 
-                    scale="0.05 0.05 0.05" 
-                    shadow="cast:true; receive:true;" 
-                    spherical-env-map="src:#skymap;">
-                </a-entity> -->
-                <!-- <a-entity
-                    id="#Everything-obj"
-                    class="collision"
-                    obj-model="obj:#Everything-obj"
-                    material="color:grey"
-                    position="0.2, 0.5, -32" 
-                    rotation="0 0 0" 
-                    scale="0.05 0.05 0.05" 
-                    shadow="cast:true; receive:true;" 
-                    spherical-env-map="src:#skymap;">
-                </a-entity> -->
-
-                <!-- <a-entity
-                    id="#temple-obj"
-                    class="collision"
-                    obj-model="obj:#temple-obj"
-                    material="color:grey"
-                    position="0, 0, -3" 
-                    rotation="0 180 0" 
-                    scale="0.05 0.05 0.05" 
-                    shadow="cast:true; receive:true;" 
-                    spherical-env-map="src:#skymap;">
                 </a-entity> -->
 
                 <a-entity
@@ -221,18 +145,6 @@
                     shadow="cast:true; receive:true;" 
                     spherical-env-map="src:#skymap;">
                 </a-entity>
-<!-- 
-            <a-entity
-                id="#Window-obj"
-                class="collision"
-                obj-model="obj:#Window-obj"
-                material="color:grey"
-                position="0.2, 1.5, -30" 
-                rotation="0 0 0" 
-                scale="0.05 0.05 0.05" 
-                shadow="cast:true; receive:true;" 
-                spherical-env-map="src:#skymap;">
-            </a-entity> -->
 
             <a-entity
                 id="#windowLeft-obj"
@@ -270,18 +182,7 @@
                 spherical-env-map="src:#skymap;">
             </a-entity>
 
-                <!-- <a-entity
-                    id="#Clouds-obj" 
-                    obj-model="obj:#Clouds-obj"
-                    material="color:grey"
-                    position="0.2, 0.5, -34" 
-                    rotation="0 0 0" 
-                    scale="0.2 0.2 0.2" 
-                    shadow="cast:true; receive:true;" 
-                    spherical-env-map="src:#skymap;">
-                </a-entity> -->
-
-                <a-box
+                <!-- <a-box
                     color="red"
                     depth="2"
                     height="0.5"
@@ -295,30 +196,8 @@
                     repeat="indefinite"
                     >
                 </a-animation>
-                </a-box>
-
-                <a-entity 
-                     id="#pagodaRoof-obj" 
-                     obj-model="obj:#pagodaRoof-obj"
-                     material="color:grey"
-                     position="-0.5, 3.5, 0.2" 
-                     rotation="0 180 0" 
-                     scale="0.28 0.28 0.28" 
-                     shadow="cast:true; receive:true;" 
-                     spherical-env-map="src:#skymap;">
-                </a-entity>     
+                </a-box> -->
                  
-                 <!-- <a-entity 
-                     id="#teapot-obj" 
-                     obj-model="obj:#teapot-obj"
-                     material="color:silver"
-                     position="0.6, 0.6, -1" 
-                     rotation="0 140 0" 
-                     scale="0.016 0.016 0.016" 
-                     shadow="cast:true; receive:true;" 
-                     spherical-env-map="src:#skymap;">
-                 </a-entity>     -->
-
                  <a-entity 
                     id="#playButton-obj" 
                     class="link"
@@ -363,7 +242,7 @@
                     >
                  </a-entity>    
 
-
+               
                  <a-entity
                     id="#menu"
                     class="link"
@@ -419,7 +298,7 @@
                     >
                  </a-entity>    -->
 
-                <a-entity 
+                <!-- <a-entity 
                     src="#Forest-obj" 
                     class="link"
                     obj-model="obj:#Forest-obj"
@@ -433,9 +312,9 @@
                     navigate-to="goto_url:meditation.html"
                     click
                     >
-                </a-entity>   
+                </a-entity>    -->
 
-                <a-entity id="sun" geometry="primitive: sphere; radius: 6"
+                <!-- <a-entity id="sun" geometry="primitive: sphere; radius: 6"
                     material="color: #FFDB99; shader: flat"
                     position="35 5 -58"
                     light="type: point; intensity: 0.02"
@@ -449,40 +328,24 @@
                     light="type: point; intensity: 0.05"
                     animation="property: scale; easing: easeInOutQuad; dir: alternate; dur: 5000; to: 0.5 0.5 0.5; loop: true"
                     >
-                </a-entity>
+                </a-entity> -->
 
 <!-- END NAVIGATION -->
 
 <!-- Building the scene -->   
-                <a-entity id="plane" 
+                <!-- <a-entity id="plane" 
                     geometry="primitive:plane; width:20; height:4;" position="0 0.5 0" rotation="-90 0 0" 
                     shadow="receive:true;" material="color:grey; sphericalEnvMap:#skymap; roughness:5; metalness:0.0;">
-                </a-entity>
+                </a-entity> -->
                 
                               
                 <a-entity id="sky" 
-                geometry = "primitive: sphere; radius: 85;" 
-                material="shader: skyGradient; colorTop: #36688D; colorBottom: #BDA589; side: back"></a-entity>
-
-                <!-- <a-entity id="sky" 
-                          geometry = "primitive: sphere; radius: 65;" 
-                          material="shader: skyGradient; colorTop: #36688D; colorBottom: #BDA589; side: back"></a-entity> -->
-
-                <!-- <a-entity id="sky"
-                    geometry="primitive:sphere; radius:200;"
-                    material="shader:flat; src:#skymap; side:back; height:2048; width:2048">
-                </a-entity> -->
+                    geometry = "primitive: sphere; radius: 85; segments-height: 9; segments-width: 18;" 
+                    material="shader: skyGradient; colorTop: #36688D; colorBottom: #BDA589; side: back"></a-entity>
 
 <!-- Ligthing -->   
 
-
-<a-sun-sky sun-position-setter>
-    <a-entity id="orbit">
-      <a-animation attribute="rotation" from="0 0 0" to="0 360 0" dur="5000"
-                   repeat="indefinite" easing="linear"></a-animation>
-    </a-entity>
-  </a-sun-sky>
-                <a-entity light="type:directional; color: #FFDB99; castShadow:true; ambient:0.09; intensity:1; shadowBias:-0.000001; shadowMapWidth:2048; shadowMapHeight:2048;" position="18.963 1.731 -33.544"; scale="0.050 0.050 0.050"></a-entity>
+                <a-entity light="type:directional; color: #FFDB99; castShadow:true; ambient:0.09; intensity:1; shadowBias:-0.000001; shadowMapWidth:1024; shadowMapHeight:1024;" position="18.963 1.731 -33.544"; scale="0.050 0.050 0.050"></a-entity>
                 <!-- <a-entity light="type:directional; color: #FFDB99; castShadow:true; ambient:0.09; intensity:1; shadowBias:-0.000001; shadowMapWidth:1000; shadowMapHeight:1000;" position="18.963 1.731 -33.544"; scale="0.050 0.050 0.050"></a-entity> -->
                 <!-- <a-entity light="type: ambient; intensity: 0.4; color: white ;"></a-entity> -->
         </a-scene>
