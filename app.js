@@ -24,6 +24,10 @@ MongoClient.connect(uri, function(err, client) {
 app.use(express.static(__dirname + '/public'));
 
 //set a route
+app.get('/', function(req, res){
+    res.sendFile(__dirname + '/public/index.html');
+});
+
 app.get('/meditation', function(req, res){
     res.sendFile(__dirname + '/public/meditation.html');
 });
