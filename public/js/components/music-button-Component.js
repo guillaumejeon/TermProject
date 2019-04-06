@@ -6,7 +6,8 @@ var paused = false;
 var musicList = 
 [
     "meditationMusic",
-    "meditationMusic0"
+    "meditationMusic0",
+    "Delete"
 ]
 
 // Functions

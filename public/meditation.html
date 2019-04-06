@@ -16,15 +16,16 @@
         <script src="/js/components/set-music-Component.js"></script>
         <script src="js/components/click-Component.js"></script>
         <script src="/js/Menu.js"></script>
+        <script src="/js/Tutorial.js"></script>
 
         <script src="js/skyGradient.js"></script>
 
         <script>
-            //AFRAME.registerComponent('recieve-controller-input', {
-            //    init:function () {
-            //        this.el.addEventListener("triggerdown");
-            //    }
-            //});
+            AFRAME.registerComponent('tutoral', {
+                init:function () {
+                    tutorial();
+                }
+            });
 
             //AFRAME.registerComponent('animation-test', {
                 //schema: {},
@@ -44,11 +45,10 @@
             //});
             
         </script>
-
     </head>
     <body>
         <!-- <script> AFRAME.registerComponent('nextScene_onClick', {init: function () {console.log('Hello, World!')} });</script> -->
-        <a-scene menu-toggle recieve-controller-input shadow="type:pcfsoft" stats fog="type: linear; color: #AAB; far: 90; near: 0">
+        <a-scene tutoral menu-toggle recieve-controller-input shadow="type:pcfsoft" stats fog="type: linear; color: #AAB; far: 90; near: 0">
         
             <a-entity laser-controls="hand: left" raycaster="objects: .link; far: 10"></a-entity>
             <a-entity laser-controls="hand: right" raycaster="objects: .link; far: 10"></a-entity>
@@ -67,9 +67,8 @@
                 <a-asset-item id='Cliff-obj' src="assets/models/cliff.obj"></a-asset-item>
                 <a-asset-item id='Everything-obj' src="assets/models/Everything.obj"></a-asset-item>
                 <a-asset-item id='Clouds-obj' src="assets/models/Clouds.obj"></a-asset-item>
-                <a-asset-item id='temple-obj' src="assets/models/temple_LowPoly.obj"></a-asset-item>
                 
-                <a-asset-item id='lowPolytemple-obj' src="assets/models/lowpoly4.obj"></a-asset-item>
+                <a-asset-item id='lowPolytemple-obj' src="assets/models/lowpoly7.obj"></a-asset-item>
 
                 <a-asset-item id='Window-obj' src="assets/models/Window.obj"></a-asset-item>
                 <a-asset-item id='windowLeft-obj' src="assets/models/windowLeft.obj"></a-asset-item>
@@ -139,7 +138,6 @@
                 id="#lowPolytemple-obj"
                 class="collision"
                 obj-model="obj:#lowPolytemple-obj"
-                material="color:grey"
                 position="0, 1.2, -42" 
                 rotation="0 0 0" 
                 scale="0.075 0.075 0.075" 
