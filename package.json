@@ -19,7 +19,8 @@
   "homepage": "https://github.com/guillaumejeon/TermProject#readme",
   "dependencies": {
     "@gladeye/aframe-preloader-component": "^1.0.2",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "socket.io": "^2.2.0"
   },
   "devDependencies": {}
 }

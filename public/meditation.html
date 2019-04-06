@@ -10,7 +10,9 @@
         <script src="/js/sun-sky.js"></script>
 
         <script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
-        <script src="https://unpkg.com/aframe-animation-component@^4.1.2/dist/aframe-animation-component.min.js"></script> 
+        <script src="https://unpkg.com/aframe-animation-component@^4.1.2/dist/aframe-animation-component.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+
         <script src="/js/components/music-button-Component.js"></script>
         <script src="/js/components/nagivate-to-Component.js"></script>
         <script src="/js/components/set-music-Component.js"></script>
@@ -20,11 +22,22 @@
         <script src="js/skyGradient.js"></script>
 
         <script>
-            //AFRAME.registerComponent('recieve-controller-input', {
-            //    init:function () {
-            //        this.el.addEventListener("triggerdown");
-            //    }
-            //});
+            const socket = io();
+
+            AFRAME.registerComponent('load-settings', {
+                schema: {},
+
+                init:function () {
+                    socket.emit('RequestInfo');
+                },
+
+                tick:function ()
+                {
+                    socket.on('RecieveData', function(data) {
+                        console.log(data);
+                    });
+                }
+            });
 
             //AFRAME.registerComponent('animation-test', {
                 //schema: {},
@@ -43,12 +56,13 @@
 
             //});
             
+            
         </script>
 
     </head>
     <body>
         <!-- <script> AFRAME.registerComponent('nextScene_onClick', {init: function () {console.log('Hello, World!')} });</script> -->
-        <a-scene menu-toggle recieve-controller-input shadow="type:pcfsoft" stats fog="type: linear; color: #AAB; far: 90; near: 0">
+        <a-scene load-settings menu-toggle recieve-controller-input shadow="type:pcfsoft" stats fog="type: linear; color: #AAB; far: 90; near: 0">
         
             <a-entity laser-controls="hand: left" raycaster="objects: .link; far: 10"></a-entity>
             <a-entity laser-controls="hand: right" raycaster="objects: .link; far: 10"></a-entity>
