@@ -9,15 +9,10 @@
         <script src="/js/spherical-env-map.js"></script>
         <script src="/js/sun-sky.js"></script>
 
-<<<<<<< HEAD
-        <script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
-        <script src="https://unpkg.com/aframe-animation-component@^4.1.2/dist/aframe-animation-component.min.js"></script>
-        <script src="/socket.io/socket.io.js"></script>
-
-=======
         <script src="/js/aframe-particle-system-component.min.js"></script> 
         <script src="https://unpkg.com/aframe-animation-component@^4.1.2/dist/aframe-animation-component.min.js"></script> 
->>>>>>> 9f2762b446f1832eaa38b97c1c2c8579658883c7
+        <script src="/socket.io/socket.io.js"></script>
+        
         <script src="/js/components/music-button-Component.js"></script>
         <script src="/js/components/nagivate-to-Component.js"></script>
         <script src="/js/components/set-music-Component.js"></script>
@@ -28,7 +23,6 @@
         <script src="js/skyGradient.js"></script>
 
         <script>
-<<<<<<< HEAD
             const socket = io();
 
             AFRAME.registerComponent('load-settings', {
@@ -36,18 +30,16 @@
 
                 init:function () {
                     socket.emit('RequestInfo');
-                },
 
-                tick:function ()
-                {
                     socket.on('RecieveData', function(data) {
                         console.log(data);
                     });
-=======
+                },
+            });          
+
             AFRAME.registerComponent('tutoral', {
                 init:function () {
                     tutorial();
->>>>>>> 9f2762b446f1832eaa38b97c1c2c8579658883c7
                 }
             });
 
@@ -68,16 +60,11 @@
 
             //});
             
-            
         </script>
     </head>
     <body>
         <!-- <script> AFRAME.registerComponent('nextScene_onClick', {init: function () {console.log('Hello, World!')} });</script> -->
-<<<<<<< HEAD
-        <a-scene load-settings menu-toggle recieve-controller-input shadow="type:pcfsoft" stats fog="type: linear; color: #AAB; far: 90; near: 0">
-=======
-        <a-scene tutoral menu-toggle recieve-controller-input shadow="type:pcfsoft" stats fog="type: linear; color: #AAB; far: 90; near: 0">
->>>>>>> 9f2762b446f1832eaa38b97c1c2c8579658883c7
+        <a-scene tutoral load-settings menu-toggle recieve-controller-input shadow="type:pcfsoft" stats fog="type: linear; color: #AAB; far: 90; near: 0">
         
             <a-entity laser-controls="hand: left" raycaster="objects: .link; far: 10"></a-entity>
             <a-entity laser-controls="hand: right" raycaster="objects: .link; far: 10"></a-entity>
@@ -142,15 +129,20 @@
                     
                     >
                     </a-entity>
-<!-- 
-                    <a-plane
-                        position="0 0 -1"
-                        color="#000" 
+
+                <!--
+                    <a-entity
+                        position="0 2 -10"
+                        geometry="primitive: plane; height: 100; width: 100"
+                        material="color:#000; opacity:1"
                         height="10" 
                         width="10"
+        
+                        animation__fade="property: material.opacity; to: 0; delay: 1000; dur: 1000; easing: linear"
+                        >
+                    </a-entity>
+                -->
 
-                        animation="property: material.opacity; to: 0; delay: 1000; dur: 1000; easing: linear"
-                    ></a-plane> -->
                 </a-entity> 
         
 
@@ -162,6 +154,18 @@
                                      color: #24CAFF; 
                                      particleCount: 1000">
                 </a-entity> -->
+
+            <!-- <a-entity
+                position="0 2 -10"
+                geometry="primitive: plane"
+                material="color:#000; opacity:1"
+                height="10" 
+                width="10"
+
+                animation__fade="property: components.material.material.opacity; to: 0; delay: 1000; dur: 1000; easing: linear"
+            ></a-entity> -->
+
+            <!-- animation__face = "property: components.material.material.opacity;" -->
 
             <a-entity
                 id="#lowPolytemple-obj"
@@ -339,10 +343,9 @@
                           >
                 </a-entity>
 
-                <a-entity id="sun" geometry="primitive: sphere; radius: 6; segments-height: 14; segments-width: 14;"
+                <a-entity id="sun" geometry="primitive: sphere; radius: 6.5; segments-height: 14; segments-width: 14;"
                     material="color: #FFDB99; shader: flat; fog: false"
-                    position="46 6.5 -58"
-                    light="type: point; intensity: 0.02"
+                    position="50 6.5 -58"
                     animation="light: intensity; easing: easeInOutQuad; dir: alternate; dur: 1000; to: 0.5; loop: true"
                     >
                 </a-entity>
@@ -358,26 +361,27 @@
                 <a-entity id="breath-buddy" geometry="primitive: sphere; radius: 0.25; segments-height: 20; segments-width: 40;"
                     material="color: #EFEFEF; shader: flat"
                     position="0 1 -3"
-                    light="type: point; intensity: 0.05"
-                    animation__color="property: components.material.material.color; easing: easeInQuad; dir: alternate; dur: 4000; type: color; from: #e8dfb5; to: #b4d3d9; loop: true"
-                    animation__scale="property: scale; easing: easeInOutQuad; dir: alternate; dur: 5000; to: 0.85 0.85 0.85; loop: true" 
+                    animation__color="property: components.material.material.color; easing: easeInQuad; dir: alternate; dur: 5000; type: color; from: #e8dfb5; to: #b4d3d9; loop: true"
+                    animation__scale="property: scale; easing: easeInOutQuad; dir: alternate; dur: 5000; to: 0.65 0.65 0.65; loop: true" 
                     >
                 </a-entity>
 
                 <a-entity id="breath-buddy-case" geometry="primitive: sphere; radius: 0.28; segments-height: 20; segments-width: 40;"
                     material="color: #EFEFEF; shader: flat; opacity: 0.35; emissive: 0.1"
                     position="0 1 -3"
-                    light="type: point; intensity: 0.05"
-                    animation__color="property: components.material.material.color; easing: easeInQuad; dir: alternate; dur: 4000; type: color; from: #e8dfb5; to: #b4d3d9; loop: true"
-                    animation__scale="property: scale; easing: easeInOutQuad; dir: alternate; dur: 5000; to: 0.83 0.835 0.83; loop: true" 
+                    animation__color="property: components.material.material.color; easing: easeInQuad; dir: alternate; dur: 5000; type: color; from: #e8dfb5; to: #b4d3d9; loop: true"
+                    animation__scale="property: scale; easing: easeInOutQuad; dir: alternate; dur: 5000; to: 0.63 0.63 0.63; loop: true" 
                     >
                 </a-entity>
               
                 <a-entity light="type: point; color: #b4d3d9; intensity: 1.75; distance: 10; decay: 4" 
                           position="0 1 -5"
                           animation__color="property: components.light.light.color; easing: easeInQuad; dir: alternate; dur: 5000; type: color; from: #e8dfb5; to: #b4d3d9; loop: true"
+                          animation__intensity="property: components.light.light.intensity; easing: easeInQuad; dir: alternate; dur: 5000; from:1.75; to: 1.00; loop: true"
                           >
                 </a-entity>
+
+              
               
 
 <!-- END NAVIGATION -->
@@ -394,7 +398,7 @@
                     material="shader: skyGradient; colorTop: #131f3e; colorBottom: #BDA589; side: back"></a-entity> -->
 
                 <a-entity id="sky" 
-                    geometry = "primitive: sphere; radius: 88; segments-height: 9; segments-width: 18;" 
+                    geometry = "primitive: sphere; radius: 95; segments-height: 9; segments-width: 18;" 
                     material="shader: skyGradient; colorTop: #36688D; colorBottom: #d9bd80; side: back"></a-entity>
 
                     <!-- <a-entity id="sky" 

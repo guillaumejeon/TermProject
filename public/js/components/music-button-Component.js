@@ -7,7 +7,8 @@ var musicList =
 [
     "meditationMusic",
     "meditationMusic0",
-    "Delete"
+    "Delete",
+    "Breathing"
 ]
 
 // Functions
