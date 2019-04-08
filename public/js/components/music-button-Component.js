@@ -5,8 +5,9 @@ var skipped = false;
 var paused = false;
 var musicList = 
 [
-    "meditationMusic",
-    "meditationMusic0",
+    "MeditationMusic",
+    "Headspace",
+    "MeditationMusic0",
     "Delete",
     "Breathing"
 ]

@@ -5,20 +5,20 @@
         <title>Hello, WebVR! - A-Frame</title>
         <meta name="description" content="Hello, WebVR! - A-Frame">
 
-        <script src="/js/aframe.min.js"></script>
-        <script src="/js/spherical-env-map.js"></script>
-        <script src="/js/sun-sky.js"></script>
+        <script src="js/aframe.min.js"></script>
+        <script src="js/spherical-env-map.js"></script>
+        <script src="js/sun-sky.js"></script>
 
-        <script src="/js/aframe-particle-system-component.min.js"></script> 
+        <script src="js/aframe-particle-system-component.min.js"></script> 
         <script src="https://unpkg.com/aframe-animation-component@^4.1.2/dist/aframe-animation-component.min.js"></script> 
         <script src="/socket.io/socket.io.js"></script>
         
-        <script src="/js/components/music-button-Component.js"></script>
-        <script src="/js/components/nagivate-to-Component.js"></script>
-        <script src="/js/components/set-music-Component.js"></script>
-        <script src="js/components/click-Component.js"></script>
-        <script src="/js/Menu.js"></script>
-        <script src="/js/Tutorial.js"></script>
+        <script src="js/components/music-button-Component.js"></script>
+        <script src="js/components/nagivate-to-Component.js"></script>
+        <script src="js/components/set-music-Component.js"></script>
+        <script src="js/components/VR-Controller-SetUp.js"></script>
+        <script src="js/Menu.js"></script>
+        <script src="js/Tutorial.js"></script>
 
         <script src="js/skyGradient.js"></script>
 
@@ -33,6 +33,8 @@
 
                     socket.on('RecieveData', function(data) {
                         console.log(data);
+                        SetMusic(data.music);
+                        ControllerSetup(data.hand, data.colour);
                     });
                 },
             });          
@@ -66,8 +68,21 @@
         <!-- <script> AFRAME.registerComponent('nextScene_onClick', {init: function () {console.log('Hello, World!')} });</script> -->
         <a-scene tutoral load-settings menu-toggle recieve-controller-input shadow="type:pcfsoft" stats fog="type: linear; color: #AAB; far: 90; near: 0">
         
-            <a-entity laser-controls="hand: left" raycaster="objects: .link; far: 10"></a-entity>
-            <a-entity laser-controls="hand: right" raycaster="objects: .link; far: 10"></a-entity>
+            <a-entity
+                id='controller'
+                vr-controller
+                laser-controls 
+                raycaster="objects: .link; far: 10" 
+                line="color: #e8dfb5; opacity: 0.75">
+
+                <a-entity
+                    id='orb'
+                    position="-0.0075 -0.04 -0.04"
+                    geometry="primitive: sphere; radius: 0.025; segments-height: 16; segments-width: 32;"
+                    material="color: #e8dfb5; opacity: 0.75; shader: flat" 
+                    light="type: point; color: #e8dfb5; intensity: 0.5; distance: 1; decay: 4">
+                </a-entity>
+            </a-entity>
 
             <a-assets timeout="3000">
 
@@ -76,7 +91,7 @@
 
                 <a-asset-item id='MountainHouse-obj' src="assets/models/MountainHouse2.obj"></a-assets-item>
                 <!-- <a-asset-item id='pagodaRoof-obj' src="assets/models/pagoda_roof.obj"></a-assets-item> -->
-                <a-asset-item id='teapot-obj' src="assets/models/teapot.obj"></a-assets-item>  
+                <!-- <a-asset-item id='teapot-obj' src="assets/models/teapot.obj"></a-assets-item> -->
                 <a-asset-item id='playButton-obj' src="assets/models/playButton.obj"></a-asset-item>
                 <a-asset-item id='pauseButton-obj' src="assets/models/pauseButton.obj"></a-asset-item>
                 <a-asset-item id='skipForwardButton-obj' src="assets/models/skipForwardButton.obj"></a-asset-item>
@@ -119,7 +134,6 @@
                         position="10, 0, 10" 
                         volume="1"
                         sound="autoplay:true"
-                        set-music="music:meditationMusic"
                         >
                     </a-entity>
                     
@@ -147,12 +161,12 @@
         
 
 <!-- Models -->            
-                <!-- <a-entity 
-                    id="rain" 
-                    particle-system="preset: 
-                                     rain; 
-                                     color: #24CAFF; 
-                                     particleCount: 1000">
+
+                <!-- <a-entity position="0 2.25 -40" 
+                    scale="0.5 0.5 0.5"
+                    particleCount="5000" 
+                    particle-system="preset: rain; color: #8eb7e5, #0088c3"
+                    >
                 </a-entity> -->
 
             <!-- <a-entity
@@ -166,6 +180,18 @@
             ></a-entity> -->
 
             <!-- animation__face = "property: components.material.material.opacity;" -->
+
+            <a-entity
+                id="#title"
+                class="link"
+                geometry="primitive: plane; width: 4.5; height:2.35; visible: true"
+                position="0 3.6 -6" 
+                material="color: black; opacity: 0; transparent: true; visible: true; shader: flat"
+                text="value: Serenity; align: center; color: white; opacity: 0.6; width:14.5; font:https://cdn.aframe.io/fonts/SourceCodePro.fnt"
+                animation__fade="property: text.opacity; to: 0; delay: 2000; dur: 4000; easing: linear"
+                animation__up="property: position; to: 0 10.6 -6; delay: 6000; dur: 4000; easing: linear"
+                >
+            </a-entity>
 
             <a-entity
                 id="#lowPolytemple-obj"
@@ -273,7 +299,6 @@
                     skip-back-sound
                     >
                  </a-entity>    
-
                
                  <a-entity
                     id="#menu"
@@ -342,7 +367,7 @@
                           particle-system="preset: dust; color: #8eb7e5, #0088c3"
                           >
                 </a-entity>
-
+                <!-- Evening sun -->
                 <a-entity id="sun" geometry="primitive: sphere; radius: 6.5; segments-height: 14; segments-width: 14;"
                     material="color: #FFDB99; shader: flat; fog: false"
                     position="50 6.5 -58"

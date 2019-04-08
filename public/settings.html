@@ -52,10 +52,15 @@
             var data = {
                 location: 'a',
                 time: 'b',
-                music: 'c'
+                music: 'c',
+                hand: 'd',
+                colour: 'e'
             }
 
             function Apply() {
+                data.colour = document.getElementById('ColourPicker').value;
+                console.log(data.colour);
+
                 console.log("Data sent");
                 socket.emit('UpdateInfo', data);
             }
@@ -63,6 +68,7 @@
             function SetLocation(location) {data.location = location;}
             function SetTime(time) {data.time = time;}
             function SetMusic(music) {data.music = music;}
+            function SetHand(hand) {data.hand = hand;}
 
         </script>
     </head>
@@ -92,8 +98,21 @@
             <div>
                 <h1 class="w3-center">Starting Music</h1>
                 <div class="w3-row w3-center">
-                    <button class="w3-button" onclick="SetMusic('MusicMeditation')">MusicMeditation</button>
-                    <button class="w3-button" onclick="SetMusic('MusicMeditation0')">MusicMeditation0</button>
+                    <button class="w3-button" onclick="SetMusic('MeditationMusic')">MeditationMusic</button>
+                    <button class="w3-button" onclick="SetMusic('MeditationMusic0')">MeditationMusic0</button>
+                </div>
+            </div>
+            <div>
+                <h1 class="w3-center">Hand</h1>
+                <div class="w3-row w3-center">
+                    <button class="w3-button" onclick="SetHand('left')">LEFT</button>
+                    <button class="w3-button" onclick="SetHand('right')">RIGHT</button>
+                </div>
+            </div>
+            <div>
+                <h1 class="w3-center">Colour</h1>
+                <div class="w3-row w3-center">
+                    <input type="color" id="ColourPicker">
                 </div>
             </div>
         </div>

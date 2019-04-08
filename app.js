@@ -10,13 +10,16 @@ const LISTEN_PORT   = 8080;
 // User data struct
 var user = {
     // Login info
-    'id':       'x0',
-    'username': 'admin',
-    'password': 'root',
+    id:         'x0',
+    username:   'admin',
+    password:   'root',
 
-    'location': 'temple',
-    'time':     'evening',
-    'music':    'meditation'
+    location:   'temple',
+    time:       'evening',
+    music:      'MeditationMusic',
+    
+    hand:       'right',
+    colour:     '#e8dfb5'
 }
 
 //middleware This set out base html to emerge from the public folder
@@ -41,6 +44,8 @@ io.on('connection', function(socket) {
         user.location = data.location;
         user.time = data.time;
         user.music = data.music;
+        user.hand = data.hand;
+        user.colour = data.colour;
 
         console.log(user);
     });
