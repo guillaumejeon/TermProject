@@ -1,0 +1,500 @@
+<!-- Main Webpage -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hello, WebVR! - A-Frame</title>
+        <meta name="description" content="Hello, WebVR! - A-Frame">
+
+        <script src="js/aframe.min.js"></script>
+        <script src="js/spherical-env-map.js"></script>
+        <script src="js/sun-sky.js"></script>
+
+        <script src="https://unpkg.com/aframe-extras.ocean@%5E3.5.x/dist/aframe-extras.ocean.min.js"></script>
+        <script src="js/aframe-particle-system-component.min.js"></script> 
+        <script src="https://unpkg.com/aframe-animation-component@^4.1.2/dist/aframe-animation-component.min.js"></script> 
+        <script src="/socket.io/socket.io.js"></script>
+        
+        <script src="js/components/music-button-Component.js"></script>
+        <script src="js/components/nagivate-to-Component.js"></script>
+        <script src="js/components/set-music-Component.js"></script>
+        <script src="js/components/VR-Controller-SetUp.js"></script>
+        <script src="js/Menu.js"></script>
+        <script src="js/Tutorial.js"></script>
+
+        <script src="js/skyGradient.js"></script>
+
+        <script>
+            const socket = io();
+
+            AFRAME.registerComponent('load-settings', {
+                schema: {},
+
+                init:function () {
+                    socket.emit('RequestInfo');
+
+                    socket.on('RecieveData', function(data) {
+                        console.log(data);
+                        SetMusic(data.music);
+                        ControllerSetup(data.hand, data.colour);
+                    });
+                },
+            });          
+
+            AFRAME.registerComponent('tutoral', {
+                init:function () {
+                    tutorial();
+                }
+            });
+
+            //AFRAME.registerComponent('animation-test', {
+                //schema: {},
+                //init: function () {
+                //    Context_AF = this;
+
+                    
+
+                    //animation="property:rotation; to:0 360 0; easing:linear; loop:true; dir:normal; dur:1000; startEvents:mouseenter; pauseEvent:mouseleave; resumeEvents:mouseleave;"
+                //},
+                // update: function () {},
+                // tick: function () {},
+                // remove: function () {},
+                // pause: function () {},
+                // play: function () {}    
+
+            //});
+            
+        </script>
+    </head>
+    <body>
+        <!-- <script> AFRAME.registerComponent('nextScene_onClick', {init: function () {console.log('Hello, World!')} });</script> -->
+        <a-scene tutoral load-settings menu-toggle recieve-controller-input shadow="type:pcfsoft" stats fog="type: linear; color: #C4BDAC; far: 90; near: 0">
+            
+            <a-assets timeout="3000">
+
+<!-- Loading in models -->
+                <a-asset-item id='Forest-obj' src="assets/models/Menu.obj"></a-assets-item>                  
+
+                <a-asset-item id='MountainHouse-obj' src="assets/models/MountainHouse2.obj"></a-assets-item>
+                <!-- <a-asset-item id='pagodaRoof-obj' src="assets/models/pagoda_roof.obj"></a-assets-item> -->
+                <!-- <a-asset-item id='teapot-obj' src="assets/models/teapot.obj"></a-assets-item> -->
+                <a-asset-item id='playButton-obj' src="assets/models/playButton.obj"></a-asset-item>
+                <a-asset-item id='pauseButton-obj' src="assets/models/pauseButton.obj"></a-asset-item>
+                <a-asset-item id='skipForwardButton-obj' src="assets/models/skipForwardButton.obj"></a-asset-item>
+                <a-asset-item id='Cliff-obj' src="assets/models/cliff.obj"></a-asset-item>
+                <a-asset-item id='Everything-obj' src="assets/models/Everything.obj"></a-asset-item>
+                <a-asset-item id='Clouds-obj' src="assets/models/Clouds.obj"></a-asset-item>
+                
+                <!-- <a-asset-item id='lowPolytemple-obj' src="assets/models/lowpoly7.obj"></a-asset-item> -->
+
+                <!-- <a-asset-item id='Window-obj' src="assets/models/Window.obj"></a-asset-item>
+                <a-asset-item id='windowLeft-obj' src="assets/models/windowLeft.obj"></a-asset-item>
+                <a-asset-item id='windowBack-obj' src="assets/models/windowBack.obj"></a-asset-item>
+                <a-asset-item id='windowRight-obj' src="assets/models/windowRight.obj"></a-asset-item> -->
+
+
+                <a-asset-item id='cottage_lowPoly-obj' src="assets/models/lakelake.obj"></a-asset-item>
+                <a-asset-item id='chair_lowPoly-obj' src="assets/models/chair.obj"></a-asset-item>
+                <a-asset-item id='chair1_lowPoly-obj' src="assets/models/chair1.obj"></a-asset-item>
+                <a-asset-item id='dockPlank_lowPoly-obj' src="assets/models/dock_plank.obj"></a-asset-item>
+                <!-- <a-asset-item id='meditationMusic1' src="assets/sound/meditationMusic.mp3"></a-asset-item> -->
+
+<!-- Loading in textures -->
+
+                <img crossorigin="anonymous" id="skymap" src="/assets/textures/Image7.jpg">
+
+
+<!-- Loading in sounds -->
+
+
+<!-- Not Important -->
+
+              
+            </a-assets>
+
+
+
+<!-- Mouse controls -->               
+
+                <!-- User -->
+               <a-entity position="0 2 0" camera look-controls>
+
+                    <!-- Creatintg sound -->   
+            
+                    <a-entity 
+                        id="mMusic" 
+                        position="10, 0, 10" 
+                        volume="1"
+                        sound="autoplay:true"
+                        >
+                    </a-entity>
+                    
+                    <a-entity
+                        id="menuToggle"
+
+                    
+                    >
+                    </a-entity>
+
+                <!--
+                    <a-entity
+                        position="0 2 -10"
+                        geometry="primitive: plane; height: 100; width: 100"
+                        material="color:#000; opacity:1"
+                        height="10" 
+                        width="10"
+        
+                        animation__fade="property: material.opacity; to: 0; delay: 1000; dur: 1000; easing: linear"
+                        >
+                    </a-entity>
+                -->
+
+                </a-entity> 
+        
+
+<!-- Models -->            
+
+                <!-- <a-entity position="0 2.25 -40" 
+                    scale="0.5 0.5 0.5"
+                    particleCount="5000" 
+                    particle-system="preset: rain; color: #8eb7e5, #0088c3"
+                    >
+                </a-entity> -->
+
+            <!-- <a-entity
+                position="0 2 -10"
+                geometry="primitive: plane"
+                material="color:#000; opacity:1"
+                height="10" 
+                width="10"
+
+                animation__fade="property: components.material.material.opacity; to: 0; delay: 1000; dur: 1000; easing: linear"
+            ></a-entity> -->
+
+            <!-- animation__face = "property: components.material.material.opacity;" -->
+
+            <!-- <a-entity
+                id="#title"
+                class="link"
+                geometry="primitive: plane; width: 4.5; height:2.35; visible: true"
+                position="0 3.6 -6" 
+                material="color: black; opacity: 0; transparent: true; visible: true; shader: flat"
+                text="value: Serenity; align: center; color: white; opacity: 0.6; width:14.5; font:https://cdn.aframe.io/fonts/SourceCodePro.fnt"
+                animation__fade="property: text.opacity; to: 0; delay: 2000; dur: 4000; easing: linear"
+                animation__up="property: position; to: 0 10.6 -6; delay: 6000; dur: 4000; easing: linear"
+                >
+            </a-entity> -->
+
+            <!-- <a-entity
+                id="#lowPolytemple-obj"
+                class="collision"
+                obj-model="obj:#lowPolytemple-obj"
+                position="0, 1.2, -42" 
+                rotation="0 0 0" 
+                scale="0.075 0.075 0.075" 
+                shadow="cast:true; receive:true;" 
+                spherical-env-map="src:#skymap;">
+            </a-entity> -->
+
+            <a-entity
+                id="#cottage_lowPoly-obj"
+                class="collision"
+                obj-model="obj:#cottage_lowPoly-obj"
+                position="0, -0.25, 17" 
+                rotation="0 180 0" 
+                scale="0.35 0.35 0.35" 
+                shadow="cast:true; receive:true;" 
+                >
+            </a-entity>
+
+            <a-entity
+                id="#chair_lowPoly-obj"
+                class="collision"
+                obj-model="obj:#chair_lowPoly-obj"
+                material="color: #CAA472; roughness: 1;"
+                position="0, -0.25, 17" 
+                rotation="0 180 0" 
+                scale="0.35 0.35 0.35" 
+                shadow="cast:true; receive:true;" 
+                >
+            </a-entity>
+
+            <a-entity
+                id="#chair1_lowPoly-obj"
+                class="collision"
+                obj-model="obj:#chair1_lowPoly-obj"
+                material="color: #CAA472; roughness: 1;"
+                position="0, -0.25, 17" 
+                rotation="0 180 0" 
+                scale="0.35 0.35 0.35" 
+                shadow="cast:true; receive:true;" 
+                >
+            </a-entity>
+
+            <a-entity
+                id="#dockPlank_lowPoly-obj"
+                class="collision"
+                obj-model="obj:#dockPlank_lowPoly-obj"
+                material="color: #957947; roughness: 1;"
+                position="0, -0.25, 17" 
+                rotation="0 180 0" 
+                scale="0.35 0.35 0.35" 
+                shadow="cast:true; receive:true;" 
+                >
+            </a-entity>
+
+            <a-entity 
+                id="ocean" 
+                position="0 -1 335;"
+                ocean="density: 20; width: 400; depth: 1000; speed: 4"
+                material="color: #9CE3F9; opacity: 0.75; metalness: 0; roughness: 1"
+                rotation="-90 0 0"
+                >
+            </a-entity>
+
+            <!-- <a-entity
+                id="#windowLeft-obj"
+                class="collision"
+                obj-model="obj:#windowLeft-obj"
+                material="color:grey; emissive:#BDA589; emissiveIntensity:0.5;"
+                position="0, 1.2, -42" 
+                rotation="0 0 0" 
+                scale="0.075 0.075 0.075" 
+                shadow="cast:true; receive:true;" 
+                spherical-env-map="src:#skymap;">
+            </a-entity>
+
+            <a-entity
+                id="#windowBack-obj"
+                class="collision"
+                obj-model="obj:#windowBack-obj"
+                material="color:grey; emissive:#BDA589; emissiveIntensity:0.45;"
+                position="0, 1.2, -42" 
+                rotation="0 0 0" 
+                scale="0.075 0.075 0.075" 
+                shadow="cast:true; receive:true;" 
+                spherical-env-map="src:#skymap;">
+            </a-entity>
+
+            <a-entity
+                id="#windowRight-obj"
+                class="collision"
+                obj-model="obj:#windowRight-obj"
+                material="color:grey;  emissive:#BDA589; emissiveIntensity:0.7;"
+                position="0, 1.2, -42" 
+                rotation="0 0 0" 
+                scale="0.075 0.075 0.075" 
+                shadow="cast:true; receive:true;" 
+                spherical-env-map="src:#skymap;">
+            </a-entity> -->
+
+                <!-- <a-box
+                    color="red"
+                    depth="2"
+                    height="0.5"
+                    width="2"
+                    position="0 10 -70.544"
+                >
+                <a-animation attribute="position"
+                    dur="20000"
+                    fill = "forward"
+                    to = "0 10 40"
+                    repeat="indefinite"
+                    >
+                </a-animation>
+                </a-box> -->
+                 
+                 <a-entity 
+                    id="#playButton-obj" 
+                    class="link"
+                    obj-model="obj:#playButton-obj"
+                    material="color:black;  visible: true; shader: flat"
+                    position="-0.3, 1.3, -6.5" 
+                    rotation="0 0 0" 
+                    scale="0.7 0.5 0.5" 
+                    shadow="cast:true; receive:true;" 
+                    spherical-env-map="src:#skymap;"
+                    play-sound
+                    >
+                 </a-entity>    
+
+                 <a-entity 
+                    id="#skipForwardButton-obj" 
+                    class="link"
+                    obj-model="obj:#skipForwardButton-obj"
+                    material="color:black; visible: true; shader: flat"
+                    position="0.3, 1.55, -6.5" 
+                    rotation="0 0 0" 
+                    scale="0.3 0.3 0.3" 
+                    shadow="cast:true; receive:true;" 
+                    spherical-env-map="src:#skymap;"
+                    animation="pauseEvents:mouseleave; resumeEvents:mouseenter;"
+                    skip-forward-sound
+                    >
+                 </a-entity>    
+
+                 <a-entity 
+                    id="#skipBackButton-obj" 
+                    class="link"
+                    obj-model="obj:#skipForwardButton-obj"
+                    material="color:black; visible: true; shader: flat"
+                    position="-0.6, 1.55, -6.5" 
+                    rotation="0 180 0" 
+                    scale="0.3 0.3 0.3" 
+                    shadow="cast:true; receive:true;" 
+                    spherical-env-map="src:#skymap;"
+                    animation="pauseEvents:mouseleave; resumeEvents:mouseenter;"
+                    skip-back-sound
+                    >
+                 </a-entity>    
+               
+                 <a-entity
+                    id="#menu"
+                    class="link"
+                    geometry="primitive: plane; width: 1.5; height:0.35;"
+                    position="-0.8 2.6 -5" 
+                    rotation="0 0 0" 
+                    material="color: black; opacity: 0.3; transparent: true; visible: true; shader: flat"
+                    text="value: Menu; align: center; color: white; opacity: 0.6; width:3.5; font:https://cdn.aframe.io/fonts/SourceCodePro.fnt"
+                    
+                    >
+                 </a-entity>
+
+<!-- MENU NAVIGATION -->
+<!-- 
+    
+                 <a-entity 
+                     id="testForest"
+                     class="link"
+                     animation-test
+                     obj-model="obj:#Forest-obj"
+                     material="color:white; sphericalEnvMap:#skymap;"
+                     position="0.8 2 -4" 
+                     rotation="0 0 0" 
+                     scale="0.012 0.012 0.012" 
+                     shadow="cast:true; receive:true;" 
+                     animation="property:rotation.z; to:360; easing:linear; autoplay:false; loop:true; dir:normal; dur:4000; pauseEvents:mouseleave; resumeEvents:mouseenter;"
+                     navigate-to="goto_url:https://www.facebook.com/"
+                     >
+
+                 </a-entity>   
+
+                 <a-entity 
+                    src="#Forest-obj" 
+                    class="link"
+                    obj-model="obj:#Forest-obj"
+                    material="color:white"
+                    position="-0.7, 2, -4" 
+                    rotation="0 0 0" 
+                    scale="0.012 0.012 0.012" 
+                    shadow="cast:true; receive:true;" 
+                    spherical-env-map="src:#skymap;"
+                    animation="property:rotation.z; to:360; easing:linear; autoplay:false; loop:true; dir:normal; dur:4000; pauseEvents:mouseleave; resumeEvents:mouseenter;"
+                    navigate-to="goto_url:https://www.instagram.com/?hl=en"
+                    >
+                 </a-entity>    -->
+
+                <!-- <a-entity 
+                    src="#Forest-obj" 
+                    class="link"
+                    obj-model="obj:#Forest-obj"
+                    material="color:white"
+                    position="-2.2, 1.9, -9" 
+                    rotation="0 0 0" 
+                    scale="0.012 0.012 0.012" 
+                    shadow="cast:true; receive:true;" 
+                    spherical-env-map="src:#skymap;"
+                    animation="property:rotation.z; to:360; easing:linear; autoplay:false; loop:true; dir:normal; dur:4000; pauseEvents:mouseleave; resumeEvents:mouseenter;"
+                    navigate-to="goto_url:meditation.html"
+                    click
+                    >
+                </a-entity>    -->
+
+                <!-- <a-entity position="0 2.25 -55" 
+                          particleCount="5000" 
+                          particle-system="preset: dust; color: #8eb7e5, #0088c3"
+                          >
+                </a-entity> -->
+                <!-- Evening sun -->
+                <!-- <a-entity id="sun" geometry="primitive: sphere; radius: 6.5; segments-height: 14; segments-width: 14;"
+                    material="color: #FFDB99; shader: flat; fog: false"
+                    position="50 6.5 -58"
+                    animation="light: intensity; easing: easeInOutQuad; dir: alternate; dur: 1000; to: 0.5; loop: true"
+                    >
+                </a-entity> -->
+
+                <!-- <a-entity id="sun" geometry="primitive: sphere; radius: 6"
+                    material="color: #d9bd80; shader: flat"
+                    position="37 6.5 -58"
+                    light="type: point; intensity: 0.02"
+                    animation="light: intensity; easing: easeInOutQuad; dir: alternate; dur: 1000; to: 0.5; loop: true"
+                    >
+                </a-entity> -->
+
+                <!-- <a-entity id="breath-buddy" geometry="primitive: sphere; radius: 0.25; segments-height: 20; segments-width: 40;"
+                    material="color: #EFEFEF; shader: flat"
+                    position="0 1 -3"
+                    animation__color="property: components.material.material.color; easing: easeInQuad; dir: alternate; dur: 5000; type: color; from: #e8dfb5; to: #b4d3d9; loop: true"
+                    animation__scale="property: scale; easing: easeInOutQuad; dir: alternate; dur: 5000; to: 0.65 0.65 0.65; loop: true" 
+                    >
+                </a-entity>
+
+                <a-entity id="breath-buddy-case" geometry="primitive: sphere; radius: 0.28; segments-height: 20; segments-width: 40;"
+                    material="color: #EFEFEF; shader: flat; opacity: 0.35; emissive: 0.1"
+                    position="0 1 -3"
+                    animation__color="property: components.material.material.color; easing: easeInQuad; dir: alternate; dur: 5000; type: color; from: #e8dfb5; to: #b4d3d9; loop: true"
+                    animation__scale="property: scale; easing: easeInOutQuad; dir: alternate; dur: 5000; to: 0.63 0.63 0.63; loop: true" 
+                    >
+                </a-entity> -->
+              
+                <!-- <a-entity light="type: point; color: #b4d3d9; intensity: 1.75; distance: 10; decay: 4" 
+                          position="0 1 -5"
+                          animation__color="property: components.light.light.color; easing: easeInQuad; dir: alternate; dur: 5000; type: color; from: #e8dfb5; to: #b4d3d9; loop: true"
+                          animation__intensity="property: components.light.light.intensity; easing: easeInQuad; dir: alternate; dur: 5000; from:1.75; to: 1.00; loop: true"
+                          >
+                </a-entity> -->
+
+              
+              
+
+<!-- END NAVIGATION -->
+
+<!-- Building the scene -->   
+                <!-- <a-entity id="plane" 
+                    geometry="primitive:plane; width:20; height:4;" position="0 0.5 0" rotation="-90 0 0" 
+                    shadow="receive:true;" material="color:grey; sphericalEnvMap:#skymap; roughness:5; metalness:0.0;">
+                </a-entity> -->
+                
+                              
+                <!-- <a-entity id="sky" 
+                    geometry = "primitive: sphere; radius: 85; segments-height: 9; segments-width: 18;" 
+                    material="shader: skyGradient; colorTop: #131f3e; colorBottom: #BDA589; side: back"></a-entity> -->
+
+                <a-entity id="sky" 
+                    geometry = "primitive: sphere; radius: 550; segments-height: 9; segments-width: 18;" 
+                    material="shader: skyGradient; colorTop: #cce9f7; colorBottom: #fccaaf; side: back"></a-entity>
+
+                    <!-- <a-entity id="sky" 
+                    geometry = "primitive: sphere; radius: 85; segments-height: 9; segments-width: 18;" 
+                    material="shader: skyGradient; colorTop: #36688D; colorBottom: #d9bd80; side: back"></a-entity> -->
+
+<!-- Ligthing -->   
+
+                <a-entity light="type:directional; color: #FFDB99; castShadow:true; ambient:0.09; intensity:0.4; shadowBias:-0.000001; shadowMapWidth:1024; shadowMapHeight:1024;" position="-3.220 3.964 -30"; scale="0.050 0.050 0.050"></a-entity>
+                <!-- <a-entity light="type:directional; color: #FFDB99; castShadow:true; ambient:0.09; intensity:1; shadowBias:-0.000001; shadowMapWidth:1000; shadowMapHeight:1000;" position="18.963 1.731 -33.544"; scale="0.050 0.050 0.050"></a-entity> -->
+                <a-entity light="type: ambient; intensity: 0.4; color: #EFEEEE ;"></a-entity>
+        </a-scene>
+    </body>
+</html>
+
+
+
+
+                <!-- <a-entity position="-0.5 1.5 0" camera look-controls wasd-controls>
+                    <a-entity   cursor="fuse:true; fuseTimeout:500;"                                    
+                                position="0 0 -1"
+                                geometry="primitive:ring; radiusInner:0.02; radiusOuter:0.03;"
+                                material="shader:flat; color:black;" >d
+                    </a-entity>
+                </a-entity> -->
+
+                <!-- geometry="primitive:ring; radiusInner:0.05; radiusOuter:0.1;" -->
