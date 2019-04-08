@@ -16,7 +16,7 @@
         <script src="js/components/music-button-Component.js"></script>
         <script src="js/components/nagivate-to-Component.js"></script>
         <script src="js/components/set-music-Component.js"></script>
-        <script src="js/components/VR-Controller-SetUp.js"></script>
+        <script src="js/Setup.js"></script>
         <script src="js/Menu.js"></script>
         <script src="js/Tutorial.js"></script>
 
@@ -35,6 +35,7 @@
                         console.log(data);
                         SetMusic(data.music);
                         ControllerSetup(data.hand, data.colour);
+                        BuddySetup(data.buddy);
                     });
                 },
             });          
@@ -67,7 +68,7 @@
     <body>
         <!-- <script> AFRAME.registerComponent('nextScene_onClick', {init: function () {console.log('Hello, World!')} });</script> -->
         <a-scene tutoral load-settings menu-toggle recieve-controller-input shadow="type:pcfsoft" stats fog="type: linear; color: #AAB; far: 90; near: 0">
-            
+
             <a-assets timeout="3000">
 
 <!-- Loading in models -->
@@ -373,24 +374,21 @@
                     animation__color="property: components.material.material.color; easing: easeInQuad; dir: alternate; dur: 5000; type: color; from: #e8dfb5; to: #b4d3d9; loop: true"
                     animation__scale="property: scale; easing: easeInOutQuad; dir: alternate; dur: 5000; to: 0.65 0.65 0.65; loop: true" 
                     >
-                </a-entity>
 
-                <a-entity id="breath-buddy-case" geometry="primitive: sphere; radius: 0.28; segments-height: 20; segments-width: 40;"
-                    material="color: #EFEFEF; shader: flat; opacity: 0.35; emissive: 0.1"
-                    position="0 1 -3"
-                    animation__color="property: components.material.material.color; easing: easeInQuad; dir: alternate; dur: 5000; type: color; from: #e8dfb5; to: #b4d3d9; loop: true"
-                    animation__scale="property: scale; easing: easeInOutQuad; dir: alternate; dur: 5000; to: 0.63 0.63 0.63; loop: true" 
-                    >
-                </a-entity>
-              
-                <a-entity light="type: point; color: #b4d3d9; intensity: 1.75; distance: 10; decay: 4" 
-                          position="0 1 -5"
-                          animation__color="property: components.light.light.color; easing: easeInQuad; dir: alternate; dur: 5000; type: color; from: #e8dfb5; to: #b4d3d9; loop: true"
-                          animation__intensity="property: components.light.light.intensity; easing: easeInQuad; dir: alternate; dur: 5000; from:1.75; to: 1.00; loop: true"
-                          >
-                </a-entity>
+                    <a-entity id="breath-buddy-case" geometry="primitive: sphere; radius: 0.28; segments-height: 20; segments-width: 40;"
+                        material="color: #EFEFEF; shader: flat; opacity: 0.35; emissive: 0.1"
+                        animation__color="property: components.material.material.color; easing: easeInQuad; dir: alternate; dur: 5000; type: color; from: #e8dfb5; to: #b4d3d9; loop: true"
+                        >
+                    </a-entity>
+                
+                    <a-entity light="type: point; color: #b4d3d9; intensity: 1.75; distance: 10; decay: 4" 
+                            position="0 0 -2"
+                            animation__color="property: components.light.light.color; easing: easeInQuad; dir: alternate; dur: 5000; type: color; from: #e8dfb5; to: #b4d3d9; loop: true"
+                            animation__intensity="property: components.light.light.intensity; easing: easeInQuad; dir: alternate; dur: 5000; from:1.75; to: 1.00; loop: true"
+                            >
+                    </a-entity>
 
-              
+                </a-entity>
               
 
 <!-- END NAVIGATION -->

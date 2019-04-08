@@ -1,11 +1,11 @@
 function ControllerSetup(hand, colour)
 {
-    let controller = document.createElement('a-entity');
+    var controller = document.createElement('a-entity');
     controller.setAttribute('laser-controls', {hand: hand});
     controller.setAttribute('raycaster', 'objects: .link; far: 10')
     controller.setAttribute('line', 'color: ' + colour + '; opacity: 0.75');
     
-    let orb = document.createElement('a-entity');
+    var orb = document.createElement('a-entity');
 
     if (hand == 'right')
         orb.setAttribute('position', {x: -0.0075, y: -0.04, z: -0.04});
@@ -18,6 +18,11 @@ function ControllerSetup(hand, colour)
 
     controller.appendChild(orb);
 
-    let scene = document.querySelector('a-scene');
+    var scene = document.querySelector('a-scene');
     scene.appendChild(controller);
+}
+
+function BuddySetup(use)
+{
+    document.getElementById('breath-buddy').setAttribute('visible', use);
 }

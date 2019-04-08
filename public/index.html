@@ -7,6 +7,26 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="/socket.io/socket.io.js"></script>
+
+<script>
+  const socket = io();
+
+  function LoadScene()
+  {
+    socket.emit('RequestInfo');
+
+    socket.on('RecieveData', function(data) {
+      console.log(data);
+      
+      if (data.location == "temple")
+        window.location.href = "meditation.html";
+      else if (data.location == "lake")
+        window.location.href = "meditation_cottage.html";
+    });
+  }
+</script>
+
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
 body, html {
@@ -16,7 +36,7 @@ body, html {
 }
 
 /* Create a Parallax Effect */
-.bgimg-1, .bgimg-2, .bgimg-3 {
+.bgimg-1, .bgimg-2, .bgimg-3, .bgimg-4 {
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -79,7 +99,6 @@ body, html {
     <a href="#portfolio" class="w3-bar-item w3-button" onclick="toggleFunction()">PORTFOLIO</a>
     <a href="#contact" class="w3-bar-item w3-button" onclick="toggleFunction()">CONTACT</a>
     <a href="settings.html" class="w3-bar-item w3-button" onclick="toggleFunction()">SETTINGS</a>
-    <a href="#" class="w3-bar-item w3-button">SEARCH</a>
   </div>
 </div>
 
@@ -97,14 +116,13 @@ body, html {
   <p class="w3-center"><em>Not just a game an Experience</em></p>
   <p>Health, tranquility, and peace of mind are the themes for our Serenity. Our team has chosen to create an experience of health and wellbeing. The focus will be on meditation and the proper techniques required to master it. The main version of our application will be accessible using VR devices, and we will be using phones/tablets to add a multi-device feature. In VR, users can access the main meditation experience, and phones/tablets will host an extended experience. The “extended” will include statistics and information to help users track their meditation journey, giving users a feeling of real change.</p>
 	<div class="w3-center">
-    	<a href="meditation.html" class="w3-button w3-padding-large w3-light-grey" style="margin-top:64px">ENTER SERENITY</a>
+      <button class="w3-button w3-padding-large w3-light-grey" onclick="LoadScene()" style="margin-top:64px">ENTER SERENITY</button>
     </div>
 </div>
 
 <div class="w3-row w3-center w3-dark-grey w3-padding-16">
   <div class="w3-section">
     <span class="w3-xlarge"></span><br>
-    
   </div>
 </div>
 

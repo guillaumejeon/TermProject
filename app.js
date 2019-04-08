@@ -17,6 +17,7 @@ var user = {
     location:   'temple',
     time:       'evening',
     music:      'MeditationMusic',
+    buddy:      'true',
     
     hand:       'right',
     colour:     '#e8dfb5'
@@ -44,6 +45,7 @@ io.on('connection', function(socket) {
         user.location = data.location;
         user.time = data.time;
         user.music = data.music;
+        user.buddy = data.buddy;
         user.hand = data.hand;
         user.colour = data.colour;
 
