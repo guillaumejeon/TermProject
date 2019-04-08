@@ -67,23 +67,7 @@
     <body>
         <!-- <script> AFRAME.registerComponent('nextScene_onClick', {init: function () {console.log('Hello, World!')} });</script> -->
         <a-scene tutoral load-settings menu-toggle recieve-controller-input shadow="type:pcfsoft" stats fog="type: linear; color: #AAB; far: 90; near: 0">
-        
-            <a-entity
-                id='controller'
-                vr-controller
-                laser-controls 
-                raycaster="objects: .link; far: 10" 
-                line="color: #e8dfb5; opacity: 0.75">
-
-                <a-entity
-                    id='orb'
-                    position="-0.0075 -0.04 -0.04"
-                    geometry="primitive: sphere; radius: 0.025; segments-height: 16; segments-width: 32;"
-                    material="color: #e8dfb5; opacity: 0.75; shader: flat" 
-                    light="type: point; color: #e8dfb5; intensity: 0.5; distance: 1; decay: 4">
-                </a-entity>
-            </a-entity>
-
+            
             <a-assets timeout="3000">
 
 <!-- Loading in models -->
