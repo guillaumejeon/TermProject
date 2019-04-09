@@ -297,6 +297,32 @@
                     >
                  </a-entity>
 
+                 <a-entity
+                    id="optionYes"
+                    visible="false"
+                    class="unlink"
+                    geometry="primitive: plane; width: 1.5; height:0.35;"
+                    position="-0.8 1.5 -2" 
+                    rotation="0 0 0" 
+                    material="color: black; opacity: 0.3; transparent: true; visible: true; shader: flat"
+                    text="value: Yes; align: center; color: white; opacity: 0.6; width:3.5; font:https://cdn.aframe.io/fonts/SourceCodePro.fnt"
+                    
+                    >
+                 </a-entity>
+
+                 <a-entity
+                    id="optionNo"
+                    visible="false"
+                    class="unlink"
+                    geometry="primitive: plane; width: 1.5; height:0.35;"
+                    position="0.8 1.5 -2" 
+                    rotation="0 0 0" 
+                    material="color: black; opacity: 0.3; transparent: true; visible: true; shader: flat"
+                    text="value: No; align: center; color: white; opacity: 0.6; width:3.5; font:https://cdn.aframe.io/fonts/SourceCodePro.fnt"
+                    
+                    >
+                 </a-entity>
+
 <!-- MENU NAVIGATION -->
 <!-- 
     
@@ -368,7 +394,8 @@
                     >
                 </a-entity> -->
 
-                <a-entity id="breath-buddy" geometry="primitive: sphere; radius: 0.25; segments-height: 20; segments-width: 40;"
+                <a-entity class="link" id="breath-buddy" geometry="primitive: sphere; radius: 0.25; segments-height: 20; segments-width: 40;"
+                    navigate-to="goto_url:index.html"
                     material="color: #EFEFEF; shader: flat"
                     position="0 -5 -3"
                     animation__color="property: components.material.material.color; easing: easeInQuad; dir: alternate; dur: 5000; type: color; from: #e8dfb5; to: #b4d3d9; loop: true"

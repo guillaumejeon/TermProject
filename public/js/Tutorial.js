@@ -2,6 +2,8 @@
 var buddy;
 var nar;
 
+
+
 function tutorial() {
   if (typeof(Storage) !== "undefined") {
     //if (localStorage.tutorial) {
@@ -19,16 +21,51 @@ function tutorial() {
     
     buddy.setAttribute('sound', {src: 'assets/sound/SerenityIntro_01.ogg', autoplay: true, volume:2});
 
-    setTimeout(yes, 40000);
+    setTimeout(function()
+    {
+      var yes = document.getElementById('optionYes');
+      var no = document.getElementById('optionNo');
 
-    setTimeout(end, 187500);
+      yes.setAttribute('visible', true);
+      yes.setAttribute('class', 'link');
+
+      no.setAttribute('visible', true);
+      no.setAttribute('class', 'link');
+
+      yes.addEventListener("click", function()
+      {        
+        yes.setAttribute('visible', false);
+        yes.setAttribute('class', 'unlink');
+  
+        no.setAttribute('visible', false);
+        no.setAttribute('class', 'unlink');
+
+        console.log("YES!");
+        instruction();
+      });
+
+
+      no.addEventListener("click", function()
+      {
+        yes.setAttribute('visible', false);
+        yes.setAttribute('class', 'unlink');
+  
+        no.setAttribute('visible', false);
+        no.setAttribute('class', 'unlink');
+
+        console.log("NO!");
+        end();
+      });
+    }, 40000);
   }
 }
 
-function yes()
+function instruction()
 {
   buddy.setAttribute('sound', {src: 'assets/sound/SerenityIntro_02.ogg'});
   buddy.components.sound.playSound();
+
+  setTimeout(end, 147500);
 }
 
 function end()

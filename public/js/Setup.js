@@ -26,8 +26,6 @@ function BuddySetup(use, tutorial)
 {
     if (use)
     {
-        var buddy = document.getElementById('breath-buddy')
-        
         var anim = 
         {
             property: 'position',
