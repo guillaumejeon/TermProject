@@ -1,4 +1,3 @@
-<!-- Main Webpage -->
 <!DOCTYPE html>
 <html>
     <head>
@@ -42,7 +41,7 @@
         </script>
     </head>
     <body>
-        <!-- <script> AFRAME.registerComponent('nextScene_onClick', {init: function () {console.log('Hello, World!')} });</script> -->
+
         <a-scene load-settings menu-toggle recieve-controller-input shadow="type:pcfsoft" stats fog="type: linear; color: #ffc4cd; far: 150; near: 0">
             
             <a-assets timeout="3000">
@@ -53,8 +52,6 @@
                 <img crossorigin="anonymous" id="skymap" src="/assets/textures/sunset.jpg">
 
                 <a-asset-item id='MountainHouse-obj' src="assets/models/MountainHouse2.obj"></a-assets-item>
-                <!-- <a-asset-item id='pagodaRoof-obj' src="assets/models/pagoda_roof.obj"></a-assets-item> -->
-                <!-- <a-asset-item id='teapot-obj' src="assets/models/teapot.obj"></a-assets-item> -->
                 <a-asset-item id='playButton-obj' src="assets/models/playButton.obj"></a-asset-item>
                 <a-asset-item id='pauseButton-obj' src="assets/models/pauseButton.obj"></a-asset-item>
                 <a-asset-item id='skipForwardButton-obj' src="assets/models/skipForwardButton.obj"></a-asset-item>
@@ -91,29 +88,14 @@
                 <a-asset-item id='houseRoof_lowPoly' src="assets/models/houseRoof_lowPoly.obj"></a-asset-item>
                 <a-asset-item id='doorKnob_lowPoly' src="assets/models/doorKnob_lowPoly.obj"></a-asset-item>
 
-                <!-- <a-asset-item id='meditationMusic1' src="assets/sound/meditationMusic.mp3"></a-asset-item> -->
-
-<!-- Loading in textures -->
-
                 <img crossorigin="anonymous" id="skymap" src="/assets/textures/Image7.jpg">
-
-
-<!-- Loading in sounds -->
-
-
-<!-- Not Important -->
-
-              
+       
             </a-assets>
 
 
+            <a-entity position="0 2 0" camera look-controls>
 
-<!-- Mouse controls -->               
-
-                <!-- User -->
-               <a-entity position="0 2 0" camera look-controls>
-
-                    <!-- Creatintg sound -->   
+<!-- Creatintg sound -->   
             
                     <a-entity 
                         id="mMusic" 
@@ -125,60 +107,13 @@
                     
                     <a-entity
                         id="menuToggle"
-
-                    
                     >
                     </a-entity>
-
-                <!--
-                    <a-entity
-                        position="0 2 -10"
-                        geometry="primitive: plane; height: 100; width: 100"
-                        material="color:#000; opacity:1"
-                        height="10" 
-                        width="10"
-        
-                        animation__fade="property: material.opacity; to: 0; delay: 1000; dur: 1000; easing: linear"
-                        >
-                    </a-entity>
-                -->
 
                 </a-entity> 
         
 
 <!-- Models -->            
-
-                <!-- <a-entity position="0 2.25 -40" 
-                    scale="0.5 0.5 0.5"
-                    particleCount="5000" 
-                    particle-system="preset: rain; color: #8eb7e5, #0088c3"
-                    >
-                </a-entity> -->
-
-            <!-- <a-entity
-                position="0 2 -10"
-                geometry="primitive: plane"
-                material="color:#000; opacity:1"
-                height="10" 
-                width="10"
-
-                animation__fade="property: components.material.material.opacity; to: 0; delay: 1000; dur: 1000; easing: linear"
-            ></a-entity> -->
-
-            <!-- animation__face = "property: components.material.material.opacity;" -->
-
-            <!-- <a-entity
-                id="#title"
-                class="link"
-                geometry="primitive: plane; width: 4.5; height:2.35; visible: true"
-                position="0 3.6 -6" 
-                material="color: black; opacity: 0; transparent: true; visible: true; shader: flat"
-                text="value: Serenity; align: center; color: white; opacity: 0.6; width:14.5; font:https://cdn.aframe.io/fonts/SourceCodePro.fnt"
-                animation__fade="property: text.opacity; to: 0; delay: 2000; dur: 4000; easing: linear"
-                animation__up="property: position; to: 0 10.6 -6; delay: 6000; dur: 4000; easing: linear"
-                >
-            </a-entity> -->
-
 
             <a-entity
                 id="#chair_lowPoly-obj"
@@ -314,7 +249,7 @@
                 >
             </a-entity>
 
-        <a-entity
+            <a-entity
                 id="#metal-obj"
                 class="collision"
                 obj-model="obj:#metal-obj"
@@ -468,24 +403,7 @@
                 >
             </a-entity>
 
-
-                <!-- <a-box
-                    color="red"
-                    depth="2"
-                    height="0.5"
-                    width="2"
-                    position="0 10 -70.544"
-                >
-                <a-animation attribute="position"
-                    dur="20000"
-                    fill = "forward"
-                    to = "0 10 40"
-                    repeat="indefinite"
-                    >
-                </a-animation>
-                </a-box> -->
-                 
-                 <a-entity 
+                <a-entity 
                     id="#playButton-obj" 
                     class="link"
                     obj-model="obj:#playButton-obj"
@@ -497,9 +415,9 @@
                     spherical-env-map="src:#skymap;"
                     play-sound
                     >
-                 </a-entity>    
+                </a-entity>    
 
-                 <a-entity 
+                <a-entity 
                     id="#skipForwardButton-obj" 
                     class="link"
                     obj-model="obj:#skipForwardButton-obj"
@@ -512,7 +430,7 @@
                     animation="pauseEvents:mouseleave; resumeEvents:mouseenter;"
                     skip-forward-sound
                     >
-                 </a-entity>    
+                </a-entity>    
 
                  <a-entity 
                     id="#skipBackButton-obj" 
@@ -543,67 +461,51 @@
 
 <!-- MENU NAVIGATION -->
 
-                <a-entity id="sun" geometry="primitive: sphere; radius: 8; segments-height: 9; segments-width: 9;"
-                    material="color: #fefff9; shader: flat; fog: false"
-                    position="120 20 -230"
-                    light="type: point; intensity: 0.02"
-                    >
-                </a-entity>
+            <a-entity id="sun" geometry="primitive: sphere; radius: 8; segments-height: 9; segments-width: 9;"
+                material="color: #fefff9; shader: flat; fog: false"
+                position="120 20 -230"
+                light="type: point; intensity: 0.02"
+                >
+            </a-entity>
 
-                <a-entity id="sun2" geometry="primitive: sphere; radius: 9; segments-height: 9; segments-width: 9;"
-                    material="color: #fefff9; shader: flat; fog: false; opacity: 0.25"
-                    position="120 20 -230"
-                    light="type: point; intensity: 0.02"
-                    >
-                </a-entity>
+            <a-entity id="sun2" geometry="primitive: sphere; radius: 9; segments-height: 9; segments-width: 9;"
+                 material="color: #fefff9; shader: flat; fog: false; opacity: 0.25"
+                 position="120 20 -230"
+                 light="type: point; intensity: 0.02"
+                >
+            </a-entity>
 
-                <a-entity id="breath-buddy" geometry="primitive: sphere; radius: 0.25; segments-height: 20; segments-width: 40;"
-                    material="color: #EFEFEF; shader: flat"
-                    position="0 1 -4.5"
-                    animation__color="property: components.material.material.color; easing: easeInQuad; dir: alternate; dur: 5000; type: color; from: #e7f0ef; to: #b8a7ce; loop: true"
-                    animation__scale="property: scale; easing: easeInOutQuad; dir: alternate; dur: 5000; to: 0.65 0.65 0.65; loop: true" 
-                    >
-                </a-entity>
+            <a-entity class="link" id="breath-buddy" geometry="primitive: sphere; radius: 0.25; segments-height: 20; segments-width: 40;"
+                  material="color: #EFEFEF; shader: flat"
+                  position="0 1 -4.5"
+                  animation__color="property: components.material.material.color; easing: easeInQuad; dir: alternate; dur: 5000; type: color; from: #dcd5e5; to: #cfe0c7; loop: true"
+                  animation__scale="property: scale; easing: easeInOutQuad; dir: alternate; dur: 5000; to: 0.65 0.65 0.65; loop: true" 
+                  >
+            </a-entity>
 
-                <a-entity id="breath-buddy-case" geometry="primitive: sphere; radius: 0.28; segments-height: 20; segments-width: 40;"
-                    material="color: #EFEFEF; shader: flat; opacity: 0.35; emissive: 0.1"
-                    position="0 1 -4.5"
-                    animation__color="property: components.material.material.color; easing: easeInQuad; dir: alternate; dur: 5000; type: color; from: #e7f0ef; to: #b8a7ce; loop: true"
-                    animation__scale="property: scale; easing: easeInOutQuad; dir: alternate; dur: 5000; to: 0.63 0.63 0.63; loop: true" 
-                    >
-                </a-entity>
+            <a-entity id="breath-buddy-case" geometry="primitive: sphere; radius: 0.28; segments-height: 20; segments-width: 40;"
+                  material="color: #EFEFEF; shader: flat; opacity: 0.35; emissive: 0.1"
+                  position="0 1 -4.5"
+                  animation__color="property: components.material.material.color; easing: easeInQuad; dir: alternate; dur: 5000; type: color; from: #dcd5e5; to: #cfe0c7; loop: true"
+                  animation__scale="property: scale; easing: easeInOutQuad; dir: alternate; dur: 5000; to: 0.63 0.63 0.63; loop: true" 
+                  >
+            </a-entity>
               
-                <a-entity light="type: point; color: #b4d3d9; intensity: 1.75; distance: 5; decay: 3" 
-                          position="0 1 -4.5"
-                          animation__color="property: components.light.light.color; easing: easeInQuad; dir: alternate; dur: 5000; type: color; from: #e7f0ef; to: #b8a7ce; loop: true"
-                          animation__intensity="property: components.light.light.intensity; easing: easeInQuad; dir: alternate; dur: 5000; from:1.35; to: 0.75; loop: true"
-                          >
-                </a-entity>
+            <a-entity light="type: point; color: #b4d3d9; intensity: 1.75; distance: 5; decay: 3" 
+                      position="0 1 -4.5"
+                      animation__color="property: components.light.light.color; easing: easeInQuad; dir: alternate; dur: 5000; type: color; from: #dcd5e5; to: #cfe0c7; loop: true"
+                      animation__intensity="property: components.light.light.intensity; easing: easeInQuad; dir: alternate; dur: 5000; from:1.35; to: 0.75; loop: true"
+                      >
+            </a-entity>
 
               
               
 
 <!-- END NAVIGATION -->
-
-<!-- Building the scene -->   
-                <!-- <a-entity id="plane" 
-                    geometry="primitive:plane; width:20; height:4;" position="0 0.5 0" rotation="-90 0 0" 
-                    shadow="receive:true;" material="color:grey; sphericalEnvMap:#skymap; roughness:5; metalness:0.0;">
-                </a-entity> -->
-                
-                              
-                <!-- <a-entity id="sky" 
-                    geometry = "primitive: sphere; radius: 85; segments-height: 9; segments-width: 18;" 
-                    material="shader: skyGradient; colorTop: #131f3e; colorBottom: #BDA589; side: back"></a-entity> -->
-
                 <a-entity id="sky" 
                     geometry = "primitive: sphere; radius: 450; segments-height: 9; segments-width: 18;" 
                     position = "0 0 0"
                     material="shader: skyGradient; colorTop: #b1adce; colorBottom: #fea59f; side: back"></a-entity>
-
-                    <!-- <a-entity id="sky" 
-                    geometry = "primitive: sphere; radius: 85; segments-height: 9; segments-width: 18;" 
-                    material="shader: skyGradient; colorTop: #36688D; colorBottom: #d9bd80; side: back"></a-entity> -->
 
 <!-- Ligthing -->   
 
@@ -615,15 +517,3 @@
     </body>
 </html>
 
-
-
-
-                <!-- <a-entity position="-0.5 1.5 0" camera look-controls wasd-controls>
-                    <a-entity   cursor="fuse:true; fuseTimeout:500;"                                    
-                                position="0 0 -1"
-                                geometry="primitive:ring; radiusInner:0.02; radiusOuter:0.03;"
-                                material="shader:flat; color:black;" >d
-                    </a-entity>
-                </a-entity> -->
-
-                <!-- geometry="primitive:ring; radiusInner:0.05; radiusOuter:0.1;" -->
