@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Hello, WebVR! - A-Frame</title>
+        <title>Cottage</title>
         <meta name="description" content="Hello, WebVR! - A-Frame">
 
         <script src="js/aframe.min.js"></script>
@@ -13,15 +13,15 @@
         <script src="js/aframe-particle-system-component.min.js"></script> 
         <script src="https://unpkg.com/aframe-animation-component@^4.1.2/dist/aframe-animation-component.min.js"></script> 
         <script src="/socket.io/socket.io.js"></script>
-        
+
+        <script src="js/skyGradient.js"></script>
+
         <script src="js/components/music-button-Component.js"></script>
         <script src="js/components/nagivate-to-Component.js"></script>
         <script src="js/components/set-music-Component.js"></script>
-        <script src="js/components/VR-Controller-SetUp.js"></script>
+        <script src="js/Setup.js"></script>
         <script src="js/Menu.js"></script>
-        <script src="js/Tutorial.js"></script>
 
-        <script src="js/skyGradient.js"></script>
 
         <script>
             const socket = io();
@@ -38,36 +38,12 @@
                         ControllerSetup(data.hand, data.colour);
                     });
                 },
-            });          
-
-            AFRAME.registerComponent('tutoral', {
-                init:function () {
-                    tutorial();
-                }
-            });
-
-            //AFRAME.registerComponent('animation-test', {
-                //schema: {},
-                //init: function () {
-                //    Context_AF = this;
-
-                    
-
-                    //animation="property:rotation; to:0 360 0; easing:linear; loop:true; dir:normal; dur:1000; startEvents:mouseenter; pauseEvent:mouseleave; resumeEvents:mouseleave;"
-                //},
-                // update: function () {},
-                // tick: function () {},
-                // remove: function () {},
-                // pause: function () {},
-                // play: function () {}    
-
-            //});
-            
+            });             
         </script>
     </head>
     <body>
         <!-- <script> AFRAME.registerComponent('nextScene_onClick', {init: function () {console.log('Hello, World!')} });</script> -->
-        <a-scene tutoral load-settings menu-toggle recieve-controller-input shadow="type:pcfsoft" stats fog="type: linear; color: #ffc4cd; far: 150; near: 0">
+        <a-scene load-settings menu-toggle recieve-controller-input shadow="type:pcfsoft" stats fog="type: linear; color: #ffc4cd; far: 150; near: 0">
             
             <a-assets timeout="3000">
 
@@ -108,6 +84,13 @@
                 <a-asset-item id='blocker' src="assets/models/blocker.obj"></a-asset-item>
                 <a-asset-item id='blocker1' src="assets/models/blocker1.obj"></a-asset-item>
                 <a-asset-item id='house_lowPoly' src="assets/models/house_lowPoly.obj"></a-asset-item>
+
+                <a-asset-item id='door_lowPoly' src="assets/models/door_lowPoly.obj"></a-asset-item>
+                <a-asset-item id='houseWood_lowPoly' src="assets/models/houseWood_lowPoly.obj"></a-asset-item>
+                <a-asset-item id='housePorch_lowPoly' src="assets/models/housePorch_lowPoly.obj"></a-asset-item>
+                <a-asset-item id='houseRoof_lowPoly' src="assets/models/houseRoof_lowPoly.obj"></a-asset-item>
+                <a-asset-item id='doorKnob_lowPoly' src="assets/models/doorKnob_lowPoly.obj"></a-asset-item>
+
                 <!-- <a-asset-item id='meditationMusic1' src="assets/sound/meditationMusic.mp3"></a-asset-item> -->
 
 <!-- Loading in textures -->
@@ -196,17 +179,6 @@
                 >
             </a-entity> -->
 
-            <!-- <a-entity
-                id="#cottage_lowPoly-obj"
-                class="collision"
-                obj-model="obj:#cottage_lowPoly-obj"
-                position="0, 1.25, 17" 
-                rotation="0 180 0" 
-                scale="0.35 0.35 0.35" 
-                shadow="cast:true; receive:true;" 
-                >
-            </a-entity> -->
-
 
             <a-entity
                 id="#chair_lowPoly-obj"
@@ -272,7 +244,7 @@
                 id="#trees_lowPoly-obj"
                 class="collision"
                 obj-model="obj:#trees_lowPoly-obj"
-                material="color: green; roughness: 1;"
+                material="color: #567D30; roughness: 1;"
                 position="0, -0.25, 17" 
                 rotation="0 180 0" 
                 scale="0.35 0.35 0.35" 
@@ -414,36 +386,12 @@
                 shadow="cast:true; receive:true;" 
                 >
             </a-entity>
-<!-- 
-            <a-entity
-                id="#blocker"
-                class="collision"
-                obj-model="obj:#blocker"
-                material="color: #8aaf80; roughness: 0.1;"
-                position="0, 0.5, 11" 
-                rotation="0 180 0" 
-                scale="0.35 0.35 0.35" 
-                shadow="cast:true; receive:true;" 
-                >
-            </a-entity>
-
-            <a-entity
-                id="#blocker1"
-                class="collision"
-                obj-model="obj:#blocker1"
-                material="color: #8aaf80; roughness: 0.1;"
-                position="4, -2.5, 34" 
-                rotation="0 180 0" 
-                scale="0.35 0.35 0.35" 
-                shadow="cast:true; receive:true;" 
-                >
-            </a-entity> -->
 
             <a-entity
                 id="#house_lowPoly"
                 class="collision"
                 obj-model="obj:#house_lowPoly"
-                material="color: #9CE3F9; roughness: 0.1;"
+                material="color: #EBCFC4; roughness: 1;"
                 position="0, -0.25, 17" 
                 rotation="0 180 0" 
                 scale="0.35 0.35 0.35" 
@@ -451,7 +399,65 @@
                 >
             </a-entity>
 
+            <a-entity
+                id="#door_lowPoly"
+                class="collision"
+                obj-model="obj:#door_lowPoly"
+                material="color: #CAA472; roughness: 1;"
+                position="0, -0.25, 17" 
+                rotation="0 180 0" 
+                scale="0.35 0.35 0.35" 
+                shadow="cast:true; receive:true;" 
+                >
+            </a-entity>
 
+            <a-entity
+                id="#houseWood_lowPoly"
+                class="collision"
+                obj-model="obj:#houseWood_lowPoly"
+                material="color: #CAA472; roughness: 1;"
+                position="0, -0.25, 17" 
+                rotation="0 180 0" 
+                scale="0.35 0.35 0.35" 
+                shadow="cast:true; receive:true;" 
+                >
+            </a-entity>
+
+            <a-entity
+                id="#housePorch_lowPoly"
+                class="collision"
+                obj-model="obj:#housePorch_lowPoly"
+                material="color: grey; roughness: 1;"
+                position="0, -0.25, 17" 
+                rotation="0 180 0" 
+                scale="0.35 0.35 0.35" 
+                shadow="cast:true; receive:true;" 
+                >
+            </a-entity>
+
+            <a-entity
+                id="#houseRoof_lowPoly"
+                class="collision"
+                obj-model="obj:#houseRoof_lowPoly"
+                material="color: #777777; roughness: 0.3;"
+                position="0, -0.25, 17" 
+                rotation="0 180 0" 
+                scale="0.35 0.35 0.35" 
+                shadow="cast:true; receive:true;" 
+                >
+            </a-entity>
+
+            <a-entity
+                id="#doorKnob_lowPoly"
+                class="collision"
+                obj-model="obj:#doorKnob_lowPoly"
+                material="color: #545454; roughness: 0.3;"
+                position="0, -0.25, 17" 
+                rotation="0 180 0" 
+                scale="0.35 0.35 0.35" 
+                shadow="cast:true; receive:true;" 
+                >
+            </a-entity>
 
             <a-entity 
                 id="ocean" 
@@ -551,28 +557,28 @@
                     >
                 </a-entity>
 
-                <!-- <a-entity id="breath-buddy" geometry="primitive: sphere; radius: 0.25; segments-height: 20; segments-width: 40;"
+                <a-entity id="breath-buddy" geometry="primitive: sphere; radius: 0.25; segments-height: 20; segments-width: 40;"
                     material="color: #EFEFEF; shader: flat"
-                    position="0 1 -3"
-                    animation__color="property: components.material.material.color; easing: easeInQuad; dir: alternate; dur: 5000; type: color; from: #e8dfb5; to: #b4d3d9; loop: true"
+                    position="0 1 -4.5"
+                    animation__color="property: components.material.material.color; easing: easeInQuad; dir: alternate; dur: 5000; type: color; from: #e7f0ef; to: #b8a7ce; loop: true"
                     animation__scale="property: scale; easing: easeInOutQuad; dir: alternate; dur: 5000; to: 0.65 0.65 0.65; loop: true" 
                     >
                 </a-entity>
 
                 <a-entity id="breath-buddy-case" geometry="primitive: sphere; radius: 0.28; segments-height: 20; segments-width: 40;"
                     material="color: #EFEFEF; shader: flat; opacity: 0.35; emissive: 0.1"
-                    position="0 1 -3"
-                    animation__color="property: components.material.material.color; easing: easeInQuad; dir: alternate; dur: 5000; type: color; from: #e8dfb5; to: #b4d3d9; loop: true"
+                    position="0 1 -4.5"
+                    animation__color="property: components.material.material.color; easing: easeInQuad; dir: alternate; dur: 5000; type: color; from: #e7f0ef; to: #b8a7ce; loop: true"
                     animation__scale="property: scale; easing: easeInOutQuad; dir: alternate; dur: 5000; to: 0.63 0.63 0.63; loop: true" 
                     >
-                </a-entity> -->
+                </a-entity>
               
-                <!-- <a-entity light="type: point; color: #b4d3d9; intensity: 1.75; distance: 10; decay: 4" 
-                          position="0 1 -5"
-                          animation__color="property: components.light.light.color; easing: easeInQuad; dir: alternate; dur: 5000; type: color; from: #e8dfb5; to: #b4d3d9; loop: true"
-                          animation__intensity="property: components.light.light.intensity; easing: easeInQuad; dir: alternate; dur: 5000; from:1.75; to: 1.00; loop: true"
+                <a-entity light="type: point; color: #b4d3d9; intensity: 1.75; distance: 5; decay: 3" 
+                          position="0 1 -4.5"
+                          animation__color="property: components.light.light.color; easing: easeInQuad; dir: alternate; dur: 5000; type: color; from: #e7f0ef; to: #b8a7ce; loop: true"
+                          animation__intensity="property: components.light.light.intensity; easing: easeInQuad; dir: alternate; dur: 5000; from:1.35; to: 0.75; loop: true"
                           >
-                </a-entity> -->
+                </a-entity>
 
               
               
@@ -602,6 +608,7 @@
 <!-- Ligthing -->   
 
                 <a-entity light="type:directional; color: #FFDB99; castShadow:true; ambient:0.3; intensity:0.2; shadowBias:-0.000001; shadowMapWidth:1024; shadowMapHeight:1024;" position="120 20 -230"; scale="0.050 0.050 0.050"></a-entity>
+                <a-entity light="type:directional; color: #FFDB99; castShadow:false; ambient:0.3; intensity:0.5; shadowBias:-0.000001; shadowMapWidth:1024; shadowMapHeight:1024;" shadow="type:basic" position=  "70 40 -130"; scale="0.050 0.050 0.050"></a-entity>
                 <!-- <a-entity light="type:directional; color: #FFDB99; castShadow:true; ambient:0.09; intensity:1; shadowBias:-0.000001; shadowMapWidth:1000; shadowMapHeight:1000;" position="18.963 1.731 -33.544"; scale="0.050 0.050 0.050"></a-entity> -->
                 <a-entity light="type: ambient; intensity: 0.3; color: #EFEEEE ;"></a-entity>
         </a-scene>
