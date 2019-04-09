@@ -20,7 +20,11 @@
             .w3-wide {letter-spacing: 10px;}
             .w3-hover-opacity {cursor: pointer;}
 
-            .center {
+            a:active {
+                border: 5px solid rgb(39, 39, 39);
+            }
+
+            .centre {
                 position: absolute;
                 left: 0;
                 top: 20%;
@@ -29,14 +33,14 @@
                 font-size: 18px;
             }
 
-            .bottom-center {
-                position: absolute;
-                left: 0;
-                top: 95%;
-                width: 100%;
-                text-align: center;
+            .left-centre {
+                position: fixed;
+                left: 64px;
+                top: 35%;
+                text-align: left;
                 font-size: 18px;
             }
+
         </style>
 
         <script>
@@ -54,14 +58,32 @@
             function Apply() {
                 data.colour = document.getElementById('ColourPicker').value;
                 socket.emit('UpdateInfo', data);
-                console.log("Data sent");
+                alert("Settings Saved");
             }
 
-            function SetLocation(location) {data.location = location;}
-            function SetTime(time) {data.time = time;}
-            function SetMusic(music) {data.music = music;}
-            function SetHand(hand) {data.hand = hand;}
-            function SetBuddy(buddy) {data.buddy = buddy;}
+            function SetLocation(location) {
+                data.location = location;
+                document.getElementById("location").innerHTML = location;
+            }
+            function SetTime(time) {
+                data.time = time;
+                document.getElementById("time").innerHTML = time;
+            }
+            function SetMusic(music) {
+                data.music = music;
+                document.getElementById("music").innerHTML = music;
+            }
+            function SetBuddy(buddy) {
+                data.buddy = buddy;
+                if (buddy)
+                    document.getElementById("buddy").innerHTML = "on";
+                else
+                    document.getElementById("buddy").innerHTML = "off";
+            }
+            function SetHand(hand) {
+                data.hand = hand;
+                document.getElementById("hand").innerHTML = hand;
+            }
         </script>
     </head>
     <body>
@@ -71,41 +93,49 @@
             </div>
         </div>
 
-        <div class="center">
+        <div class="left-centre">
+            <h4 id="location" style="color: black">Location</h4>
+            <h4 id="time" style="color: black">Time</h4>
+            <h4 id="music" style="color: black">Music</h4>
+            <h4 id="buddy" style="color: black">Use Buddy</h4>
+            <h4 id="hand" style="color: black">Hand</h4>
+        </div>
+
+        <div class="centre">
             <div>
                 <h1 class="w3-center">Location</h1>
                 <div class="w3-row w3-center">
-                    <button class="w3-button" onclick="SetLocation('temple')">TEMPLE</button>
-                    <button class="w3-button" onclick="SetLocation('lake')">LAKE</button>
+                    <a class="w3-button" onclick="SetLocation('temple')">TEMPLE</a>
+                    <a class="w3-button" onclick="SetLocation('lake')">LAKE</a>
                 </div>
             </div>
             <div>
                 <h1 class="w3-center">Time</h1>
                 <div class="w3-row w3-center">
-                    <button class="w3-button" onclick="SetTime('day')">DAY</button>
-                    <button class="w3-button" onclick="SetTime('evening')">EVENING</button>
-                    <button class="w3-button" onclick="SetTime('night')">NIGHT</button>
+                    <a class="w3-button" onclick="SetTime('day')">DAY</a>
+                    <a class="w3-button" onclick="SetTime('evening')">EVENING</a>
+                    <a class="w3-button" onclick="SetTime('night')">NIGHT</a>
                 </div>
             </div>
             <div>
                 <h1 class="w3-center">Starting Music</h1>
                 <div class="w3-row w3-center">
-                    <button class="w3-button" onclick="SetMusic('MeditationMusic')">MeditationMusic</button>
-                    <button class="w3-button" onclick="SetMusic('MeditationMusic0')">MeditationMusic0</button>
+                    <a class="w3-button" onclick="SetMusic('MeditationMusic')">MeditationMusic</a>
+                    <a class="w3-button" onclick="SetMusic('MeditationMusic0')">MeditationMusic0</a>
                 </div>
             </div>
             <div>
                 <h1 class="w3-center">Breathing Buddy</h1>                    
                 <div class="w3-row w3-center">
-                    <button class="w3-button" onclick="SetBuddy(true)">ON</button>
-                    <button class="w3-button" onclick="SetBuddy(false)">OFF</button>
+                    <a class="w3-button" onclick="SetBuddy(true)">ON</a>
+                    <a class="w3-button" onclick="SetBuddy(false)">OFF</a>
                 </div>
             </div>
             <div>
                 <h1 class="w3-center">Hand</h1>
                 <div class="w3-row w3-center">
-                    <button class="w3-button" onclick="SetHand('left')">LEFT</button>
-                    <button class="w3-button" onclick="SetHand('right')">RIGHT</button>
+                    <a class="w3-button" onclick="SetHand('left')">LEFT</a>
+                    <a class="w3-button" onclick="SetHand('right')">RIGHT</a>
                 </div>
             </div>
             <div>
@@ -114,9 +144,7 @@
                     <input type="color" id="ColourPicker">
                 </div>
             </div>
-        </div>
-        <div class="bottom-center">
-            <button class="w3-button w3-center" onclick="Apply()">APPLY</button>
+            <button class="w3-button w3-center" style="margin: 64px" onclick="Apply()">APPLY</button>
         </div>
     </body>
 </html>
