@@ -27,7 +27,6 @@ function BuddySetup(use, tutorial)
     if (use)
     {
         var buddy = document.getElementById('breath-buddy')
-        var aura = document.getElementById('breath-buddy-case');
         
         var anim = 
         {
@@ -45,28 +44,6 @@ function BuddySetup(use, tutorial)
         {
             buddy.removeAttribute('animation__setup');
         }, 7500);
-
-        if (tutorial)
-        {
-            anim = 
-            {
-                property: 'geometry.radius',
-                dur: '1000',
-                delay: '7500',
-                dir: 'alternate',
-                easing: 'easeInQuad',
-                from: '0.25',
-                to: '1'
-            }
-            console.log(anim);
-
-            aura.setAttribute('animation__test', 'property:' + anim.property + ';  dur:' + anim.dur + '; delay:' + anim.delay + '; dir:' + anim.dir +'; easing:' + anim.easing + '; from:' + anim.from + '; to:' + anim.to);
-
-            setTimeout(function()
-            {
-                aura.removeAttribute('animation__test');
-            }, 9500);
-        }
     }
     else
         document.getElementById('breath-buddy').setAttribute('visible', false);

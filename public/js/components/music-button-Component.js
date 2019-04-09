@@ -6,10 +6,7 @@ var paused = false;
 var musicList = 
 [
     "MeditationMusic",
-    "Headspace",
     "MeditationMusic0",
-    "Delete",
-    "Breathing"
 ]
 
 // Functions

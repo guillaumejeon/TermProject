@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Hello, WebVR! - A-Frame</title>
+        <title>Serenity - Temple</title>
         <meta name="description" content="Hello, WebVR! - A-Frame">
 
         <script src="js/aframe.min.js"></script>
@@ -37,14 +37,10 @@
                         ControllerSetup(data.hand, data.colour);
                         BuddySetup(data.buddy, true);
                     });
+
+                    tutorial();
                 },
             });          
-
-            AFRAME.registerComponent('tutorial', {
-                init:function () {
-                    tutorial();
-                }
-            });
 
             //AFRAME.registerComponent('animation-test', {
                 //schema: {},
@@ -67,7 +63,7 @@
     </head>
     <body>
         <!-- <script> AFRAME.registerComponent('nextScene_onClick', {init: function () {console.log('Hello, World!')} });</script> -->
-        <a-scene tutoral load-settings menu-toggle recieve-controller-input shadow="type:pcfsoft" stats fog="type: linear; color: #AAB; far: 90; near: 0">
+        <a-scene load-settings menu-toggle recieve-controller-input shadow="type:pcfsoft" stats fog="type: linear; color: #AAB; far: 90; near: 0">
 
             <a-assets timeout="3000">
 
@@ -110,22 +106,26 @@
 <!-- Mouse controls -->               
 
                 <!-- User -->
-               <a-entity position="0 2 0" camera look-controls>
+               <a-entity id="user" position="0 2 0" camera look-controls>
 
                     <!-- Creatintg sound -->   
             
                     <a-entity 
                         id="mMusic" 
-                        position="10, 0, 10" 
-                        volume="1"
-                        sound="autoplay:true"
+                        position="0 0 0" 
+                        sound="autoplay:true; volume:0.1"
+                        >
+                    </a-entity>
+
+                    <a-entity 
+                        id="nar" 
+                        position="0 0 0" 
+                        sound="autoplay:false; volume:1.5"
                         >
                     </a-entity>
                     
                     <a-entity
-                        id="menuToggle"
-
-                    
+                        id="menuToggle"                    
                     >
                     </a-entity>
 
