@@ -105,8 +105,8 @@
                 <a-asset-item id='bushes_lowPoly-obj' src="assets/models/bushes_lowPoly.obj"></a-asset-item>
                 <a-asset-item id='window_lowPoly-obj' src="assets/models/window_lowPoly.obj"></a-asset-item>
 
-
                 <a-asset-item id='blocker' src="assets/models/blocker.obj"></a-asset-item>
+                <a-asset-item id='blocker1' src="assets/models/blocker1.obj"></a-asset-item>
                 <a-asset-item id='house_lowPoly' src="assets/models/house_lowPoly.obj"></a-asset-item>
                 <!-- <a-asset-item id='meditationMusic1' src="assets/sound/meditationMusic.mp3"></a-asset-item> -->
 
@@ -414,18 +414,30 @@
                 shadow="cast:true; receive:true;" 
                 >
             </a-entity>
-
+<!-- 
             <a-entity
                 id="#blocker"
                 class="collision"
                 obj-model="obj:#blocker"
-                material="color: #9CE3F9; roughness: 0.1;"
-                position="0, 1, 17" 
+                material="color: #8aaf80; roughness: 0.1;"
+                position="0, 0.5, 11" 
                 rotation="0 180 0" 
                 scale="0.35 0.35 0.35" 
                 shadow="cast:true; receive:true;" 
                 >
             </a-entity>
+
+            <a-entity
+                id="#blocker1"
+                class="collision"
+                obj-model="obj:#blocker1"
+                material="color: #8aaf80; roughness: 0.1;"
+                position="4, -2.5, 34" 
+                rotation="0 180 0" 
+                scale="0.35 0.35 0.35" 
+                shadow="cast:true; receive:true;" 
+                >
+            </a-entity> -->
 
             <a-entity
                 id="#house_lowPoly"
@@ -443,12 +455,13 @@
 
             <a-entity 
                 id="ocean" 
-                position="0 -0.75 -300;"
-                ocean="density: 10; width: 400; depth: 1000; speed: 1"
+                position="0 -1 0;"
+                ocean="density: 10; width: 300; depth: 600; speed: 1"
                 material="color: #9CE3F9; opacity: 0.99; metalness: 0; roughness: 0.75"
                 rotation="-90 0 0"
                 >
             </a-entity>
+
 
                 <!-- <a-box
                     color="red"
