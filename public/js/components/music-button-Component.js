@@ -7,6 +7,10 @@ var musicList =
 [
     "MeditationMusic",
     "MeditationMusic0",
+    "MeditationMusic1",
+    "MeditationMusic2",
+    "MeditationMusic3",
+    "MeditationMusic4"
 ]
 
 // Functions

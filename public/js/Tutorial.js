@@ -65,7 +65,7 @@ function instruction()
   buddy.setAttribute('sound', {src: 'assets/sound/SerenityIntro_02.ogg'});
   buddy.components.sound.playSound();
 
-  setTimeout(end, 147500);
+  setTimeout(end, 165000);
 }
 
 function end()
