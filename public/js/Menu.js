@@ -5,6 +5,26 @@ AFRAME.registerComponent('menu-toggle', {
 
     init: function (){
 
+            var clock = document.getElementById('clock');
+            var d = new Date();
+            var tick = true;
+            var c = ":"
+
+            setInterval(function()
+            {
+                if (tick)
+                    c = ":"
+                else
+                    c = " "
+
+                clock.setAttribute('text', 
+                {
+                    value: d.getHours() + c + d.getMinutes()
+                });
+
+                tick = !tick;
+            }, 1000)
+
             var sBackButton = document.getElementById("#skipBackButton-obj");
             var fBackButton = document.getElementById("#skipForwardButton-obj")
             var playButton = document.getElementById("#playButton-obj");
@@ -22,6 +42,9 @@ AFRAME.registerComponent('menu-toggle', {
             musicTitle.setAttribute('visible', false);
             musicTitle.className = 'unlink';
 
+            clock.setAttribute('visible', false);
+            clock.className = 'unlink';
+
             this.el.addEventListener('gripdown', function() {
                 sBackButton.setAttribute('visible', true);
                 sBackButton.className = 'link';
@@ -34,6 +57,9 @@ AFRAME.registerComponent('menu-toggle', {
             
                 musicTitle.setAttribute('visible', true);
                 musicTitle.className = 'link';
+             
+                clock.setAttribute('visible', true);
+                clock.className = 'link';
             });
 
             this.el.addEventListener('gripup', function() {
@@ -48,6 +74,9 @@ AFRAME.registerComponent('menu-toggle', {
             
                 musicTitle.setAttribute('visible', false);
                 musicTitle.className = 'unlink';
+
+                clock.setAttribute('visible', false);
+                clock.className = 'unlink';
             });
-        }
+    },
 });

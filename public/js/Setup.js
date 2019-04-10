@@ -24,24 +24,28 @@ function ControllerSetup(hand, colour)
 
 function BuddySetup(use, tutorial)
 {
+    var buddy = document.getElementById('breath-buddy')
+
     if (use)
     {
-        var anim = 
+        if(tutorial)
         {
-            property: 'position',
-            dur: '7500',
-            delay: '0',
-            easing: 'easeInQuad',
-            from: '-10 1 -3',
-            to: '0 1 -3'
-        }
-        console.log(anim);
+            var anim = 
+            {
+                property: 'position',
+                dur: '7500',
+                delay: '0',
+                easing: 'easeInQuad',
+                from: '-10 1 -3',
+                to: '0 1 -3'
+            }
 
-        buddy.setAttribute('animation__setup', {property: anim.property, dur: anim.dur, delay: anim.delay, easing: anim.easing, from: anim.from, to: anim.to});
-        setTimeout(function()
-        {
-            buddy.removeAttribute('animation__setup');
-        }, 7500);
+            buddy.setAttribute('animation__setup', {property: anim.property, dur: anim.dur, delay: anim.delay, easing: anim.easing, from: anim.from, to: anim.to});
+            setTimeout(function()
+            {
+                buddy.removeAttribute('animation__setup');
+            }, 7500);
+        }
     }
     else
         document.getElementById('breath-buddy').setAttribute('visible', false);

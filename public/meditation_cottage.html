@@ -35,6 +35,7 @@
                         console.log(data);
                         SetMusic(data.music);
                         ControllerSetup(data.hand, data.colour);
+                        BuddySetup(data.buddy, false);
                     });
                 },
             });             
@@ -459,6 +460,16 @@
                     >
                  </a-entity>
 
+                 <a-entity
+                    id="clock"
+                    class="link"
+                    geometry="primitive: plane; width: 1.5; height:0.35;"
+                    position="0.8 2.6 -5" 
+                    material="color: black; opacity: 0.3; transparent: true; visible: true; shader: flat"
+                    text="value: clock; align: center; color: white; opacity: 0.6; width:3.5; font:https://cdn.aframe.io/fonts/SourceCodePro.fnt"
+                    >
+                 </a-entity>
+
 <!-- MENU NAVIGATION -->
 
             <a-entity id="sun" geometry="primitive: sphere; radius: 8; segments-height: 9; segments-width: 9;"
@@ -476,28 +487,27 @@
             </a-entity>
 
             <a-entity class="link" id="breath-buddy" geometry="primitive: sphere; radius: 0.25; segments-height: 20; segments-width: 40;"
-                  navigate-to="goto_url:index.html"
-                  material="color: #EFEFEF; shader: flat"
-                  position="0 1 -4.5"
-                  animation__color="property: components.material.material.color; easing: easeInQuad; dir: alternate; dur: 5000; type: color; from: #dcd5e5; to: #cfe0c7; loop: true"
-                  animation__scale="property: scale; easing: easeInOutQuad; dir: alternate; dur: 5000; to: 0.65 0.65 0.65; loop: true" 
-                  >
-            </a-entity>
+                    navigate-to="goto_url:index.html"
+                    material="color: #EFEFEF; shader: flat"
+                    position="0 -5 -3"
+                    animation__color="property: components.material.material.color; easing: easeInQuad; dir: alternate; dur: 5000; type: color; from: #e8dfb5; to: #b4d3d9; loop: true"
+                    animation__scale="property: scale; easing: easeInOutQuad; dir: alternate; dur: 5000; to: 0.65 0.65 0.65; loop: true" 
+                    >
 
-            <a-entity id="breath-buddy-case" geometry="primitive: sphere; radius: 0.28; segments-height: 20; segments-width: 40;"
-                  material="color: #EFEFEF; shader: flat; opacity: 0.35; emissive: 0.1"
-                  position="0 1 -4.5"
-                  animation__color="property: components.material.material.color; easing: easeInQuad; dir: alternate; dur: 5000; type: color; from: #dcd5e5; to: #cfe0c7; loop: true"
-                  animation__scale="property: scale; easing: easeInOutQuad; dir: alternate; dur: 5000; to: 0.63 0.63 0.63; loop: true" 
-                  >
-            </a-entity>
-              
-            <a-entity light="type: point; color: #b4d3d9; intensity: 1.75; distance: 5; decay: 3" 
-                      position="0 1 -4.5"
-                      animation__color="property: components.light.light.color; easing: easeInQuad; dir: alternate; dur: 5000; type: color; from: #dcd5e5; to: #cfe0c7; loop: true"
-                      animation__intensity="property: components.light.light.intensity; easing: easeInQuad; dir: alternate; dur: 5000; from:1.35; to: 0.75; loop: true"
-                      >
-            </a-entity>
+                    <a-entity id="breath-buddy-case" geometry="primitive: sphere; radius: 0.28; segments-height: 20; segments-width: 40;"
+                        material="color: #EFEFEF; shader: flat; opacity: 0.35; emissive: 0.1"
+                        animation__color="property: components.material.material.color; easing: easeInQuad; dir: alternate; dur: 5000; type: color; from: #e8dfb5; to: #b4d3d9; loop: true"
+                        >
+                    </a-entity>
+                
+                    <a-entity light="type: point; color: #b4d3d9; intensity: 1.75; distance: 10; decay: 4" 
+                            position="0 0 -2"
+                            animation__color="property: components.light.light.color; easing: easeInQuad; dir: alternate; dur: 5000; type: color; from: #e8dfb5; to: #b4d3d9; loop: true"
+                            animation__intensity="property: components.light.light.intensity; easing: easeInQuad; dir: alternate; dur: 5000; from:1.75; to: 1.00; loop: true"
+                            >
+                    </a-entity>
+
+                </a-entity>
 
               
               

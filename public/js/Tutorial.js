@@ -2,18 +2,14 @@
 var buddy;
 var nar;
 
-
-
 function tutorial() {
   if (typeof(Storage) !== "undefined") {
-    //if (localStorage.tutorial) {
-    if (false)
-    {
+    if (localStorage.tutorial) {
       console.log("return"); 
       return;
     }
 
-    //localStorage.tutorial = true;
+    localStorage.tutorial = true;
     console.log("first-timer noob");
     
     buddy = document.getElementById('breath-buddy');
